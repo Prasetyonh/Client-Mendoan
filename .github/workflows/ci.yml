@@ -22,7 +22,12 @@ jobs:
         run: npm ci
       - name: npm install
         run: |
-          npm install
+          npm
+      - name: npm test
+        run: |
+          npm test
+        env:
+          Actions: true
 
       - name: npm run build
         run: |
