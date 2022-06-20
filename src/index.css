@@ -1,0 +1,137 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+.h-custom {
+  height: calc(100% - 73px);
+}
+
+.nav-link {
+  color: black !important;
+  text-decoration: none !important;
+}
+
+.display-4 {
+  font-weight: bold;
+}
+.card-body-icon {
+  position: absolute;
+  z-index: 0;
+  top: 12px;
+  right: 4px;
+  opacity: 0.4;
+  font-size: 90px;
+}
+
+.bg-c-blue {
+  background: linear-gradient(45deg, #4099ff, #73b4ff);
+}
+
+.bg-c-green {
+  background: linear-gradient(45deg, #2ed8b6, #59e0c5);
+}
+
+.bg-c-yellow {
+  background: linear-gradient(45deg, #ffb64d, #ffcb80);
+}
+
+.bg-c-pink {
+  background: linear-gradient(45deg, #ff5370, #ff869a);
+}
+
+/* .nav-link.active {
+  color: darkorange !important;
+  text-decoration: none !important;
+} */
+
+/* a.dropdown-item.active {
+  color: darkorange !important;
+  text-decoration: none !important;
+} */
+
+/* a {
+  color: black !important;
+  text-decoration: none !important;
+}
+
+a.active {
+  color: darkorange !important;
+  text-decoration: none !important;
+} */
+
+/* .visibilityPass {
+  position: absolute;
+  top: 45%;
+  right: 6%;
+  width: 24px;
+}
+.visibilityConfPass {
+  position: absolute;
+  top: 60%;
+  right: 6%;
+  width: 24px;
+} */
+
+.pass img {
+  width: 24px;
+  cursor: pointer;
+}
+
+.confPass img {
+  width: 24px;
+  cursor: pointer;
+}
+
+@media (max-width: 450px) {
+  .h-custom {
+    height: 100%;
+  }
+  .visibilityPass {
+    position: absolute;
+    top: 45%;
+    right: 9%;
+    width: 24px;
+  }
+  .visibilityConfPass {
+    position: absolute;
+    top: 60%;
+    right: 9%;
+    width: 24px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .MainDiv,
+  .container.dashboard {
+    margin: 6rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .MainDiv,
+  .container.dashboard {
+    margin: 6rem 0;
+  }
+}
