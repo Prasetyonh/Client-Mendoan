@@ -23,11 +23,6 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: npm test
-        run: |
-          npm test
-        env:
-          Actions: true
 
       - name: npm run build
         run: |
