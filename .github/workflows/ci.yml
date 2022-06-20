@@ -16,13 +16,22 @@ jobs:
         with:
           node-version: 12
 
+
+      - name: clean cache
+      run: npm cache clean --force
+      - name: install
+      run: npm ci
       - name: npm install
         run: |
-          npm install --ignore-engines
+          npm install
+      
 
       - name: npm run build
         run: |
-          npm run build
+          npm run build --if-present
+        env:
+          CI: false
+
 
       - name: Add remote origin
         run: |
