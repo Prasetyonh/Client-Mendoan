@@ -21,8 +21,8 @@ const Menu = () => {
       title: "Are you sure to logout?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#fe7c96",
+      cancelButtonColor: "#b66dff",
       confirmButtonText: "Yes",
     }).then(async (result) => {
       try {
@@ -50,7 +50,7 @@ const Menu = () => {
           <Container fluid>
             <Navbar.Brand href="/dashboard">
               <img
-                src="../assets/images/logo.png"
+                src="../assets/images/mendoan.png"
                 width="200"
                 height="50"
                 className="d-inline-block align-top"
@@ -66,7 +66,7 @@ const Menu = () => {
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                   <img
-                    src="../assets/images/logo.png"
+                    src="../assets/images/mendoan.png"
                     width="200"
                     height="50"
                     className="d-inline-block align-top"
@@ -124,8 +124,9 @@ const Menu = () => {
                   </NavDropdown>
                 </Nav>
                 <Button
-                  variant="danger"
-                  size="sm"
+                  style={{ backgroundColor: "#fe7c96", border: "none" }}
+                  size="md"
+                  className="mt-3"
                   type="submit"
                   onClick={Logout}
                 >

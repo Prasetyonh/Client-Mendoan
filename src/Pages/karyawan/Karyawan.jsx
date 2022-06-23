@@ -27,7 +27,6 @@ const Karyawan = () => {
   const history = useHistory();
 
   useEffect(() => {
-    document.body.style.backgroundColor = "#f2edf3";
     refreshToken();
     getKaryawans();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,8 +51,6 @@ const Karyawan = () => {
       //Storing users detail in state array object
       const data = res.data;
       setData(data);
-
-      console.log("total karyawan = " + data.length);
     });
     //initialize datatable
     $(document).ready(function () {
@@ -85,8 +82,8 @@ const Karyawan = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#fe7c96",
+      cancelButtonColor: "#b66dff",
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       try {
@@ -119,9 +116,9 @@ const Karyawan = () => {
               <Card.Body>
                 <Link to={"/addkaryawan"}>
                   <Button
-                    variant="success"
-                    className="mb-3 float-end"
-                    size="sm"
+                    style={{ backgroundColor: "#b66dff", border: "none" }}
+                    className="btn text-white mb-3 float-end"
+                    size="md"
                   >
                     Add Karyawan
                   </Button>
@@ -129,7 +126,7 @@ const Karyawan = () => {
                 <div style={{ overflowX: "auto", width: "100%" }}>
                   <table
                     id="example"
-                    className="table table-hover table-bordered"
+                    className="table table-borderless table-striped hover compact"
                   >
                     <thead>
                       <tr>
@@ -174,26 +171,32 @@ const Karyawan = () => {
                               <Button
                                 as={Link}
                                 to={`/infokaryawan/${result.user_id}`}
-                                variant="primary"
+                                variant="info"
                                 aria-label="Info Karyawan"
                                 size="sm"
-                                className="btn m-1"
+                                className="btn m-1 text-white"
                               >
                                 <FontAwesomeIcon icon={faInfo} size="sm" />
                               </Button>
                               <Button
                                 as={Link}
                                 to={`/editkaryawan/${result.user_id}`}
-                                variant="warning"
+                                style={{
+                                  backgroundColor: "#fed713",
+                                  border: "none",
+                                }}
                                 size="sm"
                                 className="btn m-1"
                               >
                                 <FontAwesomeIcon icon={faPencil} size="sm" />
                               </Button>
                               <Button
-                                variant="danger"
+                                style={{
+                                  backgroundColor: "#fe7c96",
+                                  border: "none",
+                                }}
                                 size="sm"
-                                className="btn m-1"
+                                className="btn btn-light text-white m-1"
                                 onClick={() => deleteKaryawan(result.user_id)}
                               >
                                 <FontAwesomeIcon icon={faTrash} size="sm" />

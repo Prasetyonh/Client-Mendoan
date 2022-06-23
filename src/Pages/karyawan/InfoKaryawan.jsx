@@ -3,15 +3,7 @@ import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-import {
-  Card,
-  Row,
-  Col,
-  Button,
-  Alert,
-  Container,
-  CardGroup,
-} from "react-bootstrap";
+import { Card, Row, Col, Alert, Container, CardGroup } from "react-bootstrap";
 
 const InfoKaryawan = () => {
   const [setToken] = useState("");
@@ -228,9 +220,13 @@ const InfoKaryawan = () => {
                 </CardGroup>
 
                 <Link to={"/karyawan"}>
-                  <Button type="button" className="btn-danger" size="sm">
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary"
+                    size="sm"
+                  >
                     Back
-                  </Button>
+                  </button>
                 </Link>
               </Card.Body>
             </Card>

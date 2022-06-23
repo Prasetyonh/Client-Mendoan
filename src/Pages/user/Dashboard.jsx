@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useHistory } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Col, Row, Container, Card } from "react-bootstrap";
 
 const Dashboard = () => {
   const [name, setName] = useState("");
@@ -60,29 +60,46 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="container dashboard">
-      <h4>Welcome: {name}</h4>
-      <Button variant="primary" size="sm" type="submit" onClick={getUsers}>
+    <div className="MainDiv dashboard">
+      {/* <Button variant="primary" size="sm" type="submit" onClick={getUsers}>
         Get Users
-      </Button>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, index) => (
-            <tr key={user.id}>
-              <td>{index + 1}</td>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      </Button> */}
+      <Container>
+        <h4>
+          Welcome : <span className="text-uppercase">{name}</span>
+        </h4>
+        <Row>
+          <Col md="{12}">
+            <Card className="border-0 rounded shadow mb-3">
+              <Card.Header as="h5" className="text-center">
+                List Users Registered
+              </Card.Header>
+              <Card.Body>
+                <div style={{ overflowX: "auto", width: "100%" }}>
+                  <table className="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {users.map((user, index) => (
+                        <tr key={user.id}>
+                          <td>{index + 1}</td>
+                          <td>{user.name}</td>
+                          <td>{user.email}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };

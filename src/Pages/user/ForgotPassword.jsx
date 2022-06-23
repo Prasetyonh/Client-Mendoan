@@ -86,7 +86,7 @@ const ForgotPass = () => {
 
   return (
     <div>
-      <section className="vh-100" style={{ backgroundColor: "#f5f5f5" }}>
+      <section className="vh-100" style={{ backgroundColor: "#ebdfed" }}>
         <div className="container  h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col col-xl-10">
@@ -103,7 +103,18 @@ const ForgotPass = () => {
                   <div className="col-md-6 col-lg-7 d-flex align-items-center">
                     <div className="card-body p-4 p-lg-5 text-black">
                       <div className="d-flex align-items-center mb-3 pb-1">
-                        <span className="h1 fw-bold mb-0">Mendoans</span>
+                        <span
+                          className="h1 fw-bold"
+                          style={{ marginLeft: "-20px", marginBottom: "-25px" }}
+                        >
+                          {" "}
+                          <img
+                            src="../assets/images/mendoans.png"
+                            width="350"
+                            height="90"
+                            alt="mendoans"
+                          />
+                        </span>
                       </div>
                       <h5
                         className="fw-normal mb-3 pb-3"

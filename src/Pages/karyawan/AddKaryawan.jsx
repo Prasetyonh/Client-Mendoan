@@ -25,7 +25,7 @@ const AddKaryawan = () => {
   const [identitas, setIdentitas] = useState("");
   const [divisi, setDivisi] = useState("");
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("Active");
   const [statuskaryawan, setstatusKaryawan] = useState("");
   const [tanggalmasuk, setTanggalmasuk] = useState("");
   const [phone, setPhone] = useState("");
@@ -103,8 +103,8 @@ const AddKaryawan = () => {
       text: "Are you sure want to save this data?",
       icon: "question",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#fe7c96",
+      cancelButtonColor: "#b66dff",
       confirmButtonText: "Yes, save it!",
       cancelButtonText: "Cancel",
     }).then(async (result) => {
@@ -257,12 +257,21 @@ const AddKaryawan = () => {
                         <Form.Label>Divisi</Form.Label>
                         <Form.Control
                           name="divisi"
-                          type="text"
+                          as="select"
                           value={divisi}
                           onChange={(e) => setDivisi(e.target.value)}
                           placeholder="Masukkan Divisi"
                           required
-                        />
+                        >
+                          <option value={""} hidden>
+                            -Pilih Divisi Karyawan-
+                          </option>
+                          <option value="Developer">Developer</option>
+                          <option value="BSO">BSO</option>
+                          <option value="Digital Marketing">
+                            Digital Marketing
+                          </option>
+                        </Form.Control>
                       </Form.Group>
 
                       <Form.Group className="mb-3" controlId="formGridEmail">
@@ -469,25 +478,32 @@ const AddKaryawan = () => {
                           value={status}
                           onChange={(e) => setStatus(e.target.value)}
                           placeholder="Masukkan Status Karyawan"
-                          required
+                          disabled
                         >
-                          <option value="" hidden>
-                            -Pilih Status Bekerja-
+                          <option selected value="Active">
+                            Active
                           </option>
-                          <option value="Active">Active</option>
-                          <option value="Resign">Resign</option>
                         </Form.Control>
                       </Form.Group>
                     </div>
                   </div>
-                  <Button variant="primary" type="submit" size="sm">
-                    SAVE
+                  <Button
+                    className="btn"
+                    style={{ backgroundColor: "#b66dff", border: "none" }}
+                    type="submit"
+                    size="md"
+                  >
+                    SUBMIT
                   </Button>
 
                   <Link to={"/karyawan"}>
-                    <Button type="button" className="ms-2 btn-danger" size="sm">
+                    <button
+                      type="button"
+                      className="btn ms-2 btn-outline-secondary"
+                      size="sm"
+                    >
                       CANCEL
-                    </Button>
+                    </button>
                   </Link>
                 </Form>
               </Card.Body>

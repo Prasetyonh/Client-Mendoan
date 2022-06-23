@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Col, Row, Container, Card, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import moment from "moment";
 
 //jQuery libraries
 import "jquery/dist/jquery.min.js";
@@ -62,8 +61,8 @@ const Cuti = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#fe7c96",
+      cancelButtonColor: "#b66dff",
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       try {
@@ -94,9 +93,9 @@ const Cuti = () => {
               <Card.Body>
                 <Link to={"/addcuti"}>
                   <Button
-                    variant="success"
+                    style={{ backgroundColor: "#b66dff", border: "none" }}
                     className="mb-3 float-end"
-                    size="sm"
+                    size="md"
                   >
                     Add Cuti
                   </Button>
@@ -104,14 +103,14 @@ const Cuti = () => {
                 <div style={{ overflowX: "auto", width: "100%" }}>
                   <table
                     id="example"
-                    className="table table-hover table-bordered"
+                    className="table table-borderless table-striped hover compact "
                   >
                     <thead>
                       <tr>
-                        <th>No</th>
-                        <th>Nama Karyawan</th>
-                        <th>Tanggal Cuti</th>
-                        <th>Keterangan</th>
+                        <th style={{ width: "7%" }}>No</th>
+                        <th style={{ width: "25%" }}>Nama Karyawan</th>
+                        <th style={{ width: "20%" }}>Tanggal Cuti</th>
+                        <th style={{ width: "35%" }}>Keterangan</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -121,19 +120,19 @@ const Cuti = () => {
                           <tr key={result.id}>
                             <td>{index + 1}</td>
                             <td>{result.name}</td>
-                            <td>{result.tanggal}</td>
+                            <td>
+                              {moment(result.tanggal).format("DD-MM-YYYY")}
+                            </td>
                             <td>{result.keterangan}</td>
-                            <td align="center">
-                              <Button
-                                variant="danger"
+                            <td>
+                              <p
+                                style={{ color: "#b66dff" }}
                                 size="sm"
                                 className="btn m-1"
-                                onClick={() =>
-                                  deleteKaryawanCuti(result.id)
-                                }
+                                onClick={() => deleteKaryawanCuti(result.id)}
                               >
-                                <FontAwesomeIcon icon={faTrash} size="sm" />
-                              </Button>
+                                Delete
+                              </p>
                             </td>
                           </tr>
                         );

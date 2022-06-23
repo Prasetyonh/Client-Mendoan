@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-import date from "date-and-time";
+import Swal from "sweetalert2";
 import {
   Card,
   Row,
@@ -12,34 +12,18 @@ import {
   Alert,
   Container,
 } from "react-bootstrap";
-import Swal from "sweetalert2";
 
-const AddCuti = () => {
-  const [username, setUserName] = useState("");
+const AddResign = () => {
+  const [setUserName] = useState("");
   const [expire, setExpire] = useState("");
-  //state
+
   const [namaKaryawan, setNamaKaryawan] = useState("");
   const [nama, setNama] = useState("");
-  const [tanggal, setTanggal] = useState("");
-  const [keterangan, setKeterangan] = useState("");
 
-  //state validation
-  const [msg, setMsg] = useState("");
+  const [tanggalresign, setTanggalresign] = useState("");
 
   const history = useHistory();
-
-  const now = new Date();
-
-  //not allow space
-  // eslint-disable-next-line no-undef
-  $(function () {
-    // eslint-disable-next-line no-undef
-    $("#user_id").on("keypress", function (e) {
-      if (e.which === 32) {
-        return false;
-      }
-    });
-  });
+  const [msg, setMsg] = useState("");
 
   useEffect(() => {
     getKaryawans();
@@ -91,40 +75,36 @@ const AddCuti = () => {
     }
   };
 
-  const addCuti = async (e) => {
-    e.preventDefault();
+  const addResign = async (user_id) => {
     Swal.fire({
       title: "Are you sure?",
-      text: "Are you sure want to save this data?",
-      icon: "question",
+      text: "You won't be able to revert this!",
+      icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#fe7c96",
       cancelButtonColor: "#b66dff",
-      confirmButtonText: "Yes, save it!",
-      cancelButtonText: "Cancel",
+      confirmButtonText: "Yes",
     }).then(async (result) => {
-      if (result.value) {
-        try {
-          await axios.post("http://localhost:2471/cuti", {
-            name: nama,
-            tanggal: tanggal,
-            keterangan: keterangan,
-            createdby: username,
-            createdate: date.format(now, "YYYY-MM-DD HH:mm:ss"),
+      try {
+        if (result.isConfirmed) {
+          await axios.delete(`http://localhost:2471/karyawans/${user_id}`);
+          await axios.put(`http://localhost:2471/karyawans/${user_id}`, {
+            user_id: nama,
+            tanggalresign: tanggalresign,
           });
 
-          history.push("/cuti");
+          history.push("/resign");
 
           Swal.fire({
             title: "Saved",
-            text: "Furlough employee has been saved",
+            text: "Employee has been saved",
             icon: "success",
             confirmButtonText: "Ok",
           });
-        } catch (error) {
-          if (error.response) {
-            setMsg(error.response.data.msg);
-          }
+        }
+      } catch (error) {
+        if (error.response) {
+          setMsg(error.response.data.msg);
         }
       }
     });
@@ -137,7 +117,7 @@ const AddCuti = () => {
           <Col>
             <Card className="border-0 rounded shadow mb-5">
               <Card.Header as="h5" className="text-center">
-                Add Karyawan Cuti
+                Add Karyawan Resign
               </Card.Header>
               <Card.Body>
                 {msg.errors && (
@@ -150,7 +130,7 @@ const AddCuti = () => {
                   </Alert>
                 )}
 
-                <Form onSubmit={addCuti}>
+                <Form onSubmit={addResign}>
                   <div className="row">
                     <div className="col-md-12">
                       <Form.Group className="mb-3" controlId="formGridEmail">
@@ -171,7 +151,7 @@ const AddCuti = () => {
                                 <option
                                   text={nama.id}
                                   key={idx}
-                                  value={nama.fullname}
+                                  value={nama.user_id}
                                 >
                                   {/* {nama.user_id} */}
                                   {nama.fullname}
@@ -185,39 +165,27 @@ const AddCuti = () => {
                       </Form.Group>
 
                       <Form.Group className="mb-3" controlId="formGridEmail">
-                        <Form.Label>Tanggal</Form.Label>
+                        <Form.Label>Tanggal Resign</Form.Label>
                         <Form.Control
-                          name="tangal"
                           type="date"
-                          value={tanggal}
-                          onChange={(e) => setTanggal(e.target.value)}
-                          placeholder="Masukkan Tanggal"
-                          required
-                        />
-                      </Form.Group>
-                      <Form.Group className="mb-3" controlId="formGridEmail">
-                        <Form.Label>Keterangan</Form.Label>
-                        <Form.Control
-                          name="keterangan"
-                          type="text"
-                          value={keterangan}
-                          onChange={(e) => setKeterangan(e.target.value)}
-                          placeholder="Masukkan Keterangan"
-                          required
+                          value={tanggalresign}
+                          onChange={(e) => setTanggalresign(e.target.value)}
+                          placeholder="Masukkan Tanggal Resign"
                         />
                       </Form.Group>
                     </div>
                   </div>
                   <Button
                     style={{ backgroundColor: "#b66dff", border: "none" }}
-                    className="btn"
-                    type="submit"
                     size="md"
+                    className="btn m-1"
+                    // type="submit"
+                    onClick={() => addResign(nama)}
                   >
                     SUBMIT
                   </Button>
 
-                  <Link to={"/cuti"}>
+                  <Link to={"/resign"}>
                     <button
                       type="button"
                       className="ms-2 btn btn-outline-secondary"
@@ -236,4 +204,4 @@ const AddCuti = () => {
   );
 };
 
-export default AddCuti;
+export default AddResign;

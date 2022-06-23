@@ -129,8 +129,8 @@ const EditKaryawan = () => {
       text: "Are you sure want to update this data?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#fe7c96",
+      cancelButtonColor: "#b66dff",
       confirmButtonText: "Yes, update it!",
       cancelButtonText: "Cancel",
     }).then(async (result) => {
@@ -317,11 +317,20 @@ const EditKaryawan = () => {
                         <Form.Label>Divisi</Form.Label>
                         <Form.Control
                           name="divisi"
-                          type="text"
+                          as="select"
                           value={karyawan.divisi || ""}
                           onChange={onChangeInput}
                           placeholder="Masukkan Divisi"
-                        />
+                        >
+                          <option value={""} hidden>
+                            -Pilih Divisi Karyawan-
+                          </option>
+                          <option value="Developer">Developer</option>
+                          <option value="BSO">BSO</option>
+                          <option value="Digital Marketing">
+                            Digital Marketing
+                          </option>
+                        </Form.Control>
                       </Form.Group>
 
                       <Form.Group
@@ -560,20 +569,31 @@ const EditKaryawan = () => {
                           onChange={onChangeInput}
                           placeholder="Masukkan Status"
                         >
-                          <option value="active">Active</option>
+                          <option value="Active">Active</option>
                           <option value="resign">Resign</option>
                         </Form.Control>
                       </Form.Group>
                     </div>
                   </div>
-                  <Button variant="primary" type="submit" size="sm">
+                  <Button
+                    style={{
+                      backgroundColor: "#fed713",
+                      border: "none",
+                    }}
+                    type="submit"
+                    size="md"
+                  >
                     UPDATE
                   </Button>
 
                   <Link to={"/karyawan"}>
-                    <Button type="button" className="ms-2 btn-danger" size="sm">
+                    <button
+                      type="button"
+                      className="ms-2 btn btn-outline-secondary"
+                      size="sm"
+                    >
                       CANCEL
-                    </Button>
+                    </button>
                   </Link>
                 </Form>
               </Card.Body>

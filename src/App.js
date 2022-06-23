@@ -10,9 +10,10 @@ import {
   InfoKaryawan,
 } from "./Pages/karyawan";
 import { Cuti, AddCuti } from "./Pages/cuti";
-import Resign from "./Pages/Resign/Resign";
+import { Resign, AddResign } from "./Pages/Resign";
 
 function App() {
+  document.body.style.backgroundColor = "#ebdfed";
   return (
     <div>
       <BrowserRouter>
@@ -51,6 +52,10 @@ function App() {
           <Route path="/resign">
             <Navbar />
             <Resign />
+          </Route>
+          <Route path="/addresign">
+            <Navbar />
+            <AddResign />
           </Route>
         </Switch>
       </BrowserRouter>
