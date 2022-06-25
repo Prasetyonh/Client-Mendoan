@@ -1,7 +1,8 @@
+/* eslint-disable array-callback-return */
 import React, { useState, useEffect } from "react";
 import { Col, Row, Container, Card, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfo, faPencil } from "@fortawesome/free-solid-svg-icons";
+import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
@@ -16,6 +17,7 @@ const Resign = () => {
   const [setExpire] = useState("");
 
   const [data, setData] = useState([]);
+  const [dataResign, setDataResign] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
@@ -40,11 +42,13 @@ const Resign = () => {
 
   const getResign = () => {
     axios.get("http://localhost:2471/resign").then((res) => {
-      //Storing users detail in state array object
       const data = res.data;
       setData(data);
-
-      console.log("total karyawan = " + data.length);
+    });
+    axios.get(`http://localhost:3000/resign`).then((res) => {
+      const resigns = res.data;
+      setDataResign(resigns);
+      console.log(resigns);
     });
     //initialize datatable
     $(document).ready(function () {
@@ -98,10 +102,19 @@ const Resign = () => {
                             <td>{result.fullname}</td>
                             <td>{result.nik}</td>
                             <td>
-                              {moment(result.tanggalresign).format(
-                                "DD-MM-YYYY"
-                              )}
+                              {dataResign.map((resign, idx) => {
+                                if (result.user_id === resign.user_id) {
+                                  return (
+                                    <div>
+                                      {moment(resign.tanggalresign).format(
+                                        "DD-MM-YYYY"
+                                      )}
+                                    </div>
+                                  );
+                                }
+                              })}
                             </td>
+
                             <td>{result.divisi}</td>
                             <td>{result.email}</td>
                             <td>{result.status}</td>
@@ -109,7 +122,7 @@ const Resign = () => {
                             <td align="center">
                               <Button
                                 as={Link}
-                                to={`/infokaryawan/${result.user_id}`}
+                                to={`/detailresign/${result.user_id}`}
                                 variant="info"
                                 aria-label="Info Karyawan"
                                 size="sm"
@@ -117,7 +130,7 @@ const Resign = () => {
                               >
                                 <FontAwesomeIcon icon={faInfo} size="sm" />
                               </Button>
-                              <Button
+                              {/* <Button
                                 as={Link}
                                 to={`/editkaryawan/${result.user_id}`}
                                 style={{
@@ -128,7 +141,7 @@ const Resign = () => {
                                 className="btn m-1"
                               >
                                 <FontAwesomeIcon icon={faPencil} size="sm" />
-                              </Button>
+                              </Button> */}
                             </td>
                           </tr>
                         );

@@ -154,57 +154,86 @@ const AddCuti = () => {
                   <div className="row">
                     <div className="col-md-12">
                       <Form.Group className="mb-3" controlId="formGridEmail">
-                        <Form.Label>Nama Karyawan</Form.Label>
-                        <Form.Control
-                          className="form-select"
-                          as="select"
-                          required
-                          value={nama}
-                          onChange={(e) => setNama(e.target.value)}
-                        >
-                          <option value={""} hidden>
-                            -Pilih Nama Karyawan-
-                          </option>
-                          {namaKaryawan.length > 0 ? (
-                            namaKaryawan.map((nama, idx) => {
-                              return (
-                                <option
-                                  text={nama.id}
-                                  key={idx}
-                                  value={nama.fullname}
-                                >
-                                  {/* {nama.user_id} */}
-                                  {nama.fullname}
-                                </option>
-                              );
-                            })
-                          ) : (
-                            <option value={""}>-No Data-</option>
-                          )}
-                        </Form.Control>
+                        <div className="row">
+                          <div className="col-md-2">
+                            <Form.Label>Nama Karyawan</Form.Label>
+                          </div>
+                          <div className="col-md-10">
+                            <Form.Control
+                              style={{
+                                backgroundColor: "#11cdf1",
+                                color: "white",
+                              }}
+                              className="form-select w-25"
+                              as="select"
+                              required
+                              value={nama}
+                              onChange={(e) => setNama(e.target.value)}
+                            >
+                              <option value={""} hidden>
+                                -Pilih Nama Karyawan-
+                              </option>
+                              {namaKaryawan.length > 0 ? (
+                                namaKaryawan.map((nama, idx) => {
+                                  return (
+                                    <option
+                                      text={nama.id}
+                                      key={idx}
+                                      value={nama.fullname}
+                                      style={{
+                                        backgroundColor: "white",
+                                        color: "black",
+                                      }}
+                                    >
+                                      {/* {nama.user_id} */}
+                                      {nama.fullname}
+                                    </option>
+                                  );
+                                })
+                              ) : (
+                                <option value={""}>-No Data-</option>
+                              )}
+                            </Form.Control>
+                          </div>
+                        </div>
                       </Form.Group>
 
                       <Form.Group className="mb-3" controlId="formGridEmail">
-                        <Form.Label>Tanggal</Form.Label>
-                        <Form.Control
-                          name="tangal"
-                          type="date"
-                          value={tanggal}
-                          onChange={(e) => setTanggal(e.target.value)}
-                          placeholder="Masukkan Tanggal"
-                          required
-                        />
+                        <div className="row">
+                          <div className="col-md-2">
+                            <Form.Label>Tanggal</Form.Label>
+                          </div>
+                          <div className="col-md-10">
+                            <Form.Control
+                              name="tangal"
+                              type="date"
+                              className="form-control w-25"
+                              value={tanggal}
+                              onChange={(e) => setTanggal(e.target.value)}
+                              placeholder="Masukkan Tanggal"
+                              required
+                            />
+                          </div>
+                        </div>
                       </Form.Group>
                       <Form.Group className="mb-3" controlId="formGridEmail">
-                        <Form.Label>Keterangan</Form.Label>
-                        <Form.Control
-                          name="keterangan"
-                          type="text"
-                          value={keterangan}
-                          onChange={(e) => setKeterangan(e.target.value)}
-                          placeholder="Masukkan Keterangan"
-                          required
-                        />
+                        <div className="row">
+                          <div className="col-md-2">
+                            <Form.Label>Keterangan</Form.Label>
+                          </div>
+                          <div className="col-md-10">
+                            <Form.Control
+                              name="keterangan"
+                              type="text"
+                              className="form-control w-25"
+                              value={keterangan}
+                              onChange={(e) => setKeterangan(e.target.value)}
+                              placeholder="Masukkan Keterangan"
+                              required
+                              autoComplete="off"
+                            />
+                          </div>
+                        </div>
                       </Form.Group>
                     </div>
                   </div>
