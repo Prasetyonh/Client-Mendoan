@@ -6,6 +6,9 @@ import { Link, useParams } from "react-router-dom";
 import { Card, Row, Col, Alert, Container, CardGroup } from "react-bootstrap";
 import moment from "moment";
 
+import { API_URL } from "../../Utils/Constant";
+import { FAKEAPI_URL } from "../../Utils/Constant";
+
 const DetailResign = () => {
   const [setToken] = useState("");
   const [setExpire] = useState("");
@@ -60,7 +63,7 @@ const DetailResign = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:2471/token");
+      const response = await axios.get(API_URL + "/token");
       setToken(response.data.accessToken);
       const decoded = jwt_decode(response.data.accessToken);
 
@@ -74,7 +77,7 @@ const DetailResign = () => {
 
   const getKaryawan = async () => {
     try {
-      const res = await axios.get(`http://localhost:2471/karyawans/${id}`);
+      const res = await axios.get(API_URL + `/karyawans/${id}`);
 
       setKaryawan({
         user_id: res.data.user_id,
@@ -111,7 +114,7 @@ const DetailResign = () => {
 
   const getResign = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/resign?user_id=${id}`);
+      const res = await axios.get(FAKEAPI_URL + `/resign?user_id=${id}`);
       const resigns = res.data[0];
       setResign(resigns);
     } catch (error) {

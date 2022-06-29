@@ -9,6 +9,8 @@ import Swal from "sweetalert2";
 import moment from "moment";
 import CardKaryawan from "../../Components/CardKaryawan";
 
+import { API_URL } from "../../Utils/Constant";
+
 //jQuery libraries
 import "jquery/dist/jquery.min.js";
 
@@ -34,7 +36,7 @@ const Karyawan = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:2471/token");
+      const response = await axios.get(API_URL + "/token");
       setToken(response.data.accessToken);
       const decoded = jwt_decode(response.data.accessToken);
 
@@ -47,7 +49,7 @@ const Karyawan = () => {
   };
 
   const getKaryawans = () => {
-    axios.get("http://localhost:2471/karyawans").then((res) => {
+    axios.get(API_URL + "/karyawans").then((res) => {
       //Storing users detail in state array object
       const data = res.data;
       setData(data);
@@ -88,7 +90,7 @@ const Karyawan = () => {
     }).then(async (result) => {
       try {
         if (result.isConfirmed) {
-          await axios.delete(`http://localhost:2471/karyawans/${user_id}`);
+          await axios.delete(API_URL + `/karyawans/${user_id}`);
           // .then((response) => {
           //   console.log(response);
           // });

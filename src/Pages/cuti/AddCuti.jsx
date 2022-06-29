@@ -14,6 +14,8 @@ import {
 } from "react-bootstrap";
 import Swal from "sweetalert2";
 
+import { API_URL } from "../../Utils/Constant";
+
 const AddCuti = () => {
   const [username, setUserName] = useState("");
   const [expire, setExpire] = useState("");
@@ -49,7 +51,7 @@ const AddCuti = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:2471/token");
+      const response = await axios.get(API_URL + "/token");
       const decoded = jwt_decode(response.data.accessToken);
       setUserName(decoded.email);
       setExpire(decoded.exp);
@@ -66,7 +68,7 @@ const AddCuti = () => {
     async (config) => {
       const currentDate = new Date();
       if (expire * 1000 < currentDate.getTime()) {
-        const response = await axios.get("http://localhost:2471/token");
+        const response = await axios.get(API_URL + "/token");
         config.headers.Authorization = `Bearer ${response.data.accessToken}`;
         const decoded = jwt_decode(response.data.accessToken);
         setUserName(decoded.email);
@@ -81,7 +83,7 @@ const AddCuti = () => {
 
   const getKaryawans = () => {
     try {
-      axios.get("http://localhost:2471/karyawans").then((res) => {
+      axios.get(API_URL + "/karyawans").then((res) => {
         //Storing users detail in state array object
         const data = res.data;
         setNamaKaryawan(data);
@@ -105,7 +107,7 @@ const AddCuti = () => {
     }).then(async (result) => {
       if (result.value) {
         try {
-          await axios.post("http://localhost:2471/cuti", {
+          await axios.post(API_URL + "/cuti", {
             name: nama,
             tanggal: tanggal,
             keterangan: keterangan,

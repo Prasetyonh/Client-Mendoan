@@ -7,6 +7,7 @@ import { Button, Form, InputGroup } from "react-bootstrap";
 import show from "../../assets/eye.png";
 import hide from "../../assets/hidden.png";
 
+import { API_URL } from "../../Utils/Constant";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,7 +43,7 @@ const Login = () => {
   const Auth = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:2471/login", {
+      await axios.post(API_URL + "/login", {
         email: email,
         password: password,
       });

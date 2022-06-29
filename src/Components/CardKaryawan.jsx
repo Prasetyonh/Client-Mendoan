@@ -3,6 +3,8 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
+import { API_URL } from "../Utils/Constant";
+
 const CardKaryawan = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -10,7 +12,7 @@ const CardKaryawan = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const getKaryawans = () => {
-    axios.get("http://localhost:2471/karyawans").then((res) => {
+    axios.get(API_URL + "/karyawans").then((res) => {
       //Storing users detail in state array object
       const data = res.data;
       setData(data);

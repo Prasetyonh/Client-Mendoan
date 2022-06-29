@@ -17,6 +17,9 @@ import {
 
 import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 
+import { API_URL } from "../../Utils/Constant";
+import { FAKEAPI_URL } from "../../Utils/Constant";
+
 const AddResign = () => {
   const [setUserName] = useState("");
   const [expire, setExpire] = useState("");
@@ -40,7 +43,7 @@ const AddResign = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:2471/token");
+      const response = await axios.get(API_URL + "/token");
       const decoded = jwt_decode(response.data.accessToken);
       setUserName(decoded.email);
       setExpire(decoded.exp);
@@ -57,7 +60,7 @@ const AddResign = () => {
     async (config) => {
       const currentDate = new Date();
       if (expire * 1000 < currentDate.getTime()) {
-        const response = await axios.get("http://localhost:2471/token");
+        const response = await axios.get(API_URL + "/token");
         config.headers.Authorization = `Bearer ${response.data.accessToken}`;
         const decoded = jwt_decode(response.data.accessToken);
         setUserName(decoded.email);
@@ -72,7 +75,7 @@ const AddResign = () => {
 
   const getKaryawans = () => {
     try {
-      axios.get("http://localhost:2471/karyawans").then((res) => {
+      axios.get(API_URL + "/karyawans").then((res) => {
         //Storing users detail in state array object
         const data = res.data;
         setNamaKaryawan(data);
@@ -94,8 +97,8 @@ const AddResign = () => {
     }).then(async (result) => {
       try {
         if (result.isConfirmed) {
-          await axios.delete(`http://localhost:2471/karyawans/${user_id}`);
-          await axios.post(`http://localhost:3000/resign`, {
+          await axios.delete(API_URL + `/karyawans/${user_id}`);
+          await axios.post(FAKEAPI_URL + `/resign`, {
             user_id: user_id,
             tanggalresign,
             handoverKaryawan,

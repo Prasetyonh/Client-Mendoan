@@ -11,6 +11,8 @@ import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
+import { API_URL } from "../Utils/Constant";
+
 const Menu = () => {
   // const handleSelect = (eventKey) => alert(`selected ${eventKey}`);
 
@@ -27,7 +29,7 @@ const Menu = () => {
     }).then(async (result) => {
       try {
         if (result.isConfirmed) {
-          await axios.delete("http://localhost:2471/logout");
+          await axios.delete(API_URL + "/logout");
           Swal.fire("Success!", "You have successfully logged out.", "success");
           history.push("/");
         }

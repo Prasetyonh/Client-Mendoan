@@ -9,6 +9,8 @@ import { Button, Form, InputGroup } from "react-bootstrap";
 import show from "../../assets/eye.png";
 import hide from "../../assets/hidden.png";
 
+import { API_URL } from "../../Utils/Constant";
+
 const ForgotPass = () => {
   const [emailError, setEmailError] = useState("");
   const [email, setEmail] = useState("");
@@ -36,7 +38,7 @@ const ForgotPass = () => {
   const forgotPass = async (e) => {
     e.preventDefault();
     try {
-      await axios.put("http://localhost:2471/forgot", {
+      await axios.put(API_URL + "/forgot", {
         email: email,
         password: password,
         confPassword: confPassword,
@@ -65,7 +67,7 @@ const ForgotPass = () => {
           confirmButtonText: "Yes, reset it!",
         }).then(async (result) => {
           if (result.isConfirmed) {
-            await axios.put("http://localhost:2471/forgot", {
+            await axios.put(API_URL + "/forgot", {
               email: email,
               password: password,
               confPassword: confPassword,

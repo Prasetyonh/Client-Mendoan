@@ -14,6 +14,8 @@ import {
 } from "react-bootstrap";
 import Swal from "sweetalert2";
 
+import { API_URL } from "../../Utils/Constant";
+
 const AddKaryawan = () => {
   const [username, setUserName] = useState("");
   const [expire, setExpire] = useState("");
@@ -66,7 +68,7 @@ const AddKaryawan = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:2471/token");
+      const response = await axios.get(API_URL + "/token");
       const decoded = jwt_decode(response.data.accessToken);
       setUserName(decoded.email);
       setExpire(decoded.exp);
@@ -83,7 +85,7 @@ const AddKaryawan = () => {
     async (config) => {
       const currentDate = new Date();
       if (expire * 1000 < currentDate.getTime()) {
-        const response = await axios.get("http://localhost:2471/token");
+        const response = await axios.get(API_URL + "/token");
         config.headers.Authorization = `Bearer ${response.data.accessToken}`;
         const decoded = jwt_decode(response.data.accessToken);
         setUserName(decoded.email);
@@ -110,7 +112,7 @@ const AddKaryawan = () => {
     }).then(async (result) => {
       if (result.value) {
         try {
-          await axios.post("http://localhost:2471/karyawans", {
+          await axios.post(API_URL + "/karyawans", {
             user_id: user_id,
             fullname: fullname,
             statuspernikahan: statuspernikahan,

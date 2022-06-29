@@ -4,6 +4,8 @@ import jwt_decode from "jwt-decode";
 import { useHistory } from "react-router-dom";
 import { Col, Row, Container, Card } from "react-bootstrap";
 
+import { API_URL } from "../../Utils/Constant";
+
 const Dashboard = () => {
   const [name, setName] = useState("");
   const [token, setToken] = useState("");
@@ -19,7 +21,7 @@ const Dashboard = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:2471/token");
+      const response = await axios.get(API_URL + "/token");
       setToken(response.data.accessToken);
       const decoded = jwt_decode(response.data.accessToken);
       setName(decoded.name);
@@ -37,7 +39,7 @@ const Dashboard = () => {
     async (config) => {
       const currentDate = new Date();
       if (expire * 1000 < currentDate.getTime()) {
-        const response = await axios.get("http://localhost:2471/token");
+        const response = await axios.get(API_URL + "/token");
         config.headers.Authorization = `Bearer ${response.data.accessToken}`;
         const decoded = jwt_decode(response.data.accessToken);
         setName(decoded.name);
@@ -51,7 +53,7 @@ const Dashboard = () => {
   );
 
   const getUsers = async () => {
-    const response = await axiosJwt.get("http://localhost:2471/users", {
+    const response = await axiosJwt.get(API_URL + "/users", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

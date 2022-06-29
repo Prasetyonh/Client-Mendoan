@@ -13,6 +13,8 @@ import {
   Container,
 } from "react-bootstrap";
 
+import { API_URL } from "../../Utils/Constant";
+
 const EditKaryawan = () => {
   //not allow space
   // eslint-disable-next-line no-undef
@@ -67,7 +69,7 @@ const EditKaryawan = () => {
   useEffect(() => {
     refreshToken();
     const getKaryawan = async () => {
-      const res = await axios.get(`http://localhost:2471/karyawans/${id}`);
+      const res = await axios.get(API_URL + `/karyawans/${id}`);
 
       setKaryawan({
         user_id: res.data.user_id,
@@ -104,7 +106,7 @@ const EditKaryawan = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:2471/token");
+      const response = await axios.get(API_URL + "/token");
       setToken(response.data.accessToken);
       const decoded = jwt_decode(response.data.accessToken);
 
@@ -193,7 +195,7 @@ const EditKaryawan = () => {
             status,
           };
 
-          await axios.put(`http://localhost:2471/karyawans/${id}`, newKaryawan);
+          await axios.put(API_URL + `/karyawans/${id}`, newKaryawan);
 
           history.push("/karyawan");
 

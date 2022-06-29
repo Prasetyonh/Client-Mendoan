@@ -5,6 +5,8 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { Card, Row, Col, Alert, Container, CardGroup } from "react-bootstrap";
 
+import { API_URL } from "../../Utils/Constant";
+
 const InfoKaryawan = () => {
   const [setToken] = useState("");
   const [setExpire] = useState("");
@@ -51,7 +53,7 @@ const InfoKaryawan = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:2471/token");
+      const response = await axios.get(API_URL + "/token");
       setToken(response.data.accessToken);
       const decoded = jwt_decode(response.data.accessToken);
 
@@ -65,7 +67,7 @@ const InfoKaryawan = () => {
 
   const getKaryawan = async () => {
     try {
-      const res = await axios.get(`http://localhost:2471/karyawans/${id}`);
+      const res = await axios.get(API_URL + `/karyawans/${id}`);
 
       setKaryawan({
         user_id: res.data.user_id,

@@ -12,6 +12,9 @@ import jwt_decode from "jwt-decode";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+import { API_URL } from "../../Utils/Constant";
+import { FAKEAPI_URL } from "../../Utils/Constant";
+
 const Resign = () => {
   const [setToken] = useState("");
   const [setExpire] = useState("");
@@ -28,7 +31,7 @@ const Resign = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:2471/token");
+      const response = await axios.get(API_URL + "/token");
       setToken(response.data.accessToken);
       const decoded = jwt_decode(response.data.accessToken);
 
@@ -41,11 +44,11 @@ const Resign = () => {
   };
 
   const getResign = () => {
-    axios.get("http://localhost:2471/resign").then((res) => {
+    axios.get(API_URL + "/resign").then((res) => {
       const data = res.data;
       setData(data);
     });
-    axios.get(`http://localhost:3000/resign`).then((res) => {
+    axios.get(FAKEAPI_URL + `/resign`).then((res) => {
       const resigns = res.data;
       setDataResign(resigns);
       console.log(resigns);
