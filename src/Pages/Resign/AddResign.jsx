@@ -213,7 +213,7 @@ const AddResign = () => {
                           }}
                           onSelect={(e) => {
                             console.log(e);
-                            setHandoverKaryawan(`${e} ,`);
+                            setHandoverKaryawan(`${e},`);
                           }}
                           options={
                             namaKaryawan.length > 0

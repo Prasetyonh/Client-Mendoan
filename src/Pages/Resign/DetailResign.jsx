@@ -310,7 +310,9 @@ const DetailResign = () => {
                       <Card.Text>Tanggal Resign</Card.Text>
                     </div>
                     <div className="col-md-9">
-                      <Card.Text>: {resign.tanggalresign}</Card.Text>
+                      <Card.Text>
+                        : {moment(resign.tanggalresign).format("DD-MM-YYYY")}
+                      </Card.Text>
                     </div>
                   </div>
 
