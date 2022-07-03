@@ -72,6 +72,14 @@ body {
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.308);
 }
 
+.modal-90w {
+  width: 70%;
+  max-width: 70% !important;
+}
+.custom-modal {
+  border-radius: 10px !important;
+}
+
 /* .nav-link.active {
   color: darkorange !important;
   text-decoration: none !important;
@@ -144,5 +152,12 @@ a.active {
   .MainDiv,
   .container.dashboard {
     margin: 6rem 0;
+  }
+  .col-sm-6 {
+    margin-bottom: 3px;
+  }
+  .modal-90w {
+    width: 70%;
+    max-width: 100% !important;
   }
 }

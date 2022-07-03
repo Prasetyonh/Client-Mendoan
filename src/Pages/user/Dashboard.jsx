@@ -62,7 +62,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="MainDiv dashboard">
+    <div className="MainDiv">
       {/* <Button variant="primary" size="sm" type="submit" onClick={getUsers}>
         Get Users
       </Button> */}

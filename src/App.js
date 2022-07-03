@@ -3,12 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Login, Register, Forgot, Dashboard } from "./Pages/user";
 import Navbar from "./Components/Navbar";
-import {
-  AddKaryawan,
-  Karyawan,
-  EditKaryawan,
-  InfoKaryawan,
-} from "./Pages/karyawan";
+import { Karyawan, EditKaryawan, InfoKaryawan } from "./Pages/karyawan";
 import { Cuti, AddCuti } from "./Pages/cuti";
 import { Resign, AddResign, DetailResign } from "./Pages/Resign";
 
@@ -29,10 +24,10 @@ function App() {
             <Navbar />
             <Karyawan />
           </Route>
-          <Route path="/addkaryawan">
+          {/* <Route path="/addkaryawan">
             <Navbar />
             <AddKaryawan />
-          </Route>
+          </Route> */}
           <Route path="/editkaryawan/:id">
             <Navbar />
             <EditKaryawan />

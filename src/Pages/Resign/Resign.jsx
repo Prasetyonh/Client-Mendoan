@@ -62,7 +62,7 @@ const Resign = () => {
   };
 
   return (
-    <div className="MainDiv">
+    <div className="MainDiv " style={{ display: "flex" }}>
       <Container>
         <Row className="mt-4">
           <Col md="{12}">

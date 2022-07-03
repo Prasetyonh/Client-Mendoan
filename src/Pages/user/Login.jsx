@@ -47,7 +47,7 @@ const Login = () => {
         email: email,
         password: password,
       });
-      history.push("/dashboard");
+      history.push("/karyawan");
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);

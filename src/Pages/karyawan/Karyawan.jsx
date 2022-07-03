@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Col, Row, Container, Card, Button } from "react-bootstrap";
+import { Col, Row, Container, Card, Button, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo, faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useEffect } from "react";
@@ -8,6 +8,8 @@ import jwt_decode from "jwt-decode";
 import Swal from "sweetalert2";
 import moment from "moment";
 import CardKaryawan from "../../Components/CardKaryawan";
+
+import ModalAddKaryawan from "../../Components/Karyawan/modalAddKaryawan";
 
 import { API_URL } from "../../Utils/Constant";
 
@@ -23,6 +25,11 @@ import { Link } from "react-router-dom";
 const Karyawan = () => {
   const [setToken] = useState("");
   const [setExpire] = useState("");
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const [data, setData] = useState([]);
 
@@ -116,15 +123,16 @@ const Karyawan = () => {
                 List Karyawan
               </Card.Header>
               <Card.Body>
-                <Link to={"/addkaryawan"}>
-                  <Button
-                    style={{ backgroundColor: "#b66dff", border: "none" }}
-                    className="btn text-white mb-3 float-end"
-                    size="md"
-                  >
-                    Add Karyawan
-                  </Button>
-                </Link>
+                {/* <Link to={"/addkaryawan"}> */}
+                <Button
+                  style={{ backgroundColor: "#b66dff", border: "none" }}
+                  className="btn text-white mb-3 float-end"
+                  size="md"
+                  onClick={handleShow}
+                >
+                  Add Karyawan
+                </Button>
+                {/* </Link> */}
                 <div style={{ overflowX: "auto", width: "100%" }}>
                   <table
                     id="example"
@@ -215,6 +223,23 @@ const Karyawan = () => {
           </Col>
         </Row>
       </Container>
+
+      <Modal
+        show={show}
+        dialogClassName="modal-90w"
+        contentClassName="custom-modal"
+        onHide={handleClose}
+      >
+        <Modal.Header>
+          <Modal.Title>Add Karyawan</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ModalAddKaryawan
+            handleClose={handleClose}
+            getKaryawans={getKaryawans}
+          />
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

@@ -22,54 +22,73 @@ const CardKaryawan = () => {
   };
   return (
     <>
-      <div className="row text-white mb-2 align-items-center">
-        <div className="card bg-c-blue ms-3" style={{ width: "20rem" }}>
-          <div className="card-body">
-            <div className="card-body-icon">
-              <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
+      {/* desktop */}
+      <div className="d-md-block d-none">
+        <div className="row container text-white mb-2 card-karyawan ">
+          <div className="card col-sm-6 col-lg bg-c-blue ms-3 ">
+            <div className="card-body">
+              <div className="card-body-icon">
+                <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
+              </div>
+              <h6 className="card-title">TOTAL KARYAWAN AKTIF</h6>
+              <div className="display-4">{data.length}</div>
             </div>
-            <h5 className="card-title">TOTAL KARYAWAN AKTIF</h5>
-            <div className="display-4">{data.length}</div>
           </div>
-        </div>
 
-        <div className="card bg-c-green ms-3" style={{ width: "19rem" }}>
-          <div className="card-body">
-            <div className="card-body-icon">
-              <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
+          <div className="card col-sm-6 col-lg bg-c-green ms-3">
+            <div className="card-body">
+              <div className="card-body-icon">
+                <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
+              </div>
+              <h6 className="card-title">DIVISI DEVELOPER</h6>
+              <div className="display-4">
+                {data.filter((item) => item.divisi === "Developer").length}
+              </div>
             </div>
-            <h6 className="card-title">DIVISI DEVELOPER</h6>
-            <div className="display-4">
-              {data.filter((item) => item.divisi === "Developer").length}
+          </div>
+
+          <div className="card col-sm-6 col-lg bg-c-pink ms-3">
+            <div className="card-body">
+              <div className="card-body-icon">
+                <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
+              </div>
+              <h6 className="card-title">DIVISI BSO</h6>
+              <div className="display-4">
+                {data.filter((item) => item.divisi === "BSO").length}
+              </div>
+            </div>
+          </div>
+          <div className="card col-sm-6 col-lg bg-c-yellow ms-3">
+            <div className="card-body">
+              <div className="card-body-icon">
+                <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
+              </div>
+              <h6 className="card-title">DIVISI DIGITAL MARKETING</h6>
+              <div className="display-4">
+                {
+                  data.filter((item) => item.divisi === "Digital Marketing")
+                    .length
+                }
+              </div>
             </div>
           </div>
         </div>
-        <div className="card bg-c-pink ms-3" style={{ width: "19rem" }}>
-          <div className="card-body">
-            <div className="card-body-icon">
-              <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
-            </div>
-            <h6 className="card-title">DIVISI BSO</h6>
-            <div className="display-4">
-              {data.filter((item) => item.divisi === "BSO").length}
-            </div>
-          </div>
-        </div>
-        <div className="card bg-c-yellow ms-3" style={{ width: "19rem" }}>
-          <div className="card-body">
-            <div className="card-body-icon">
-              <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
-            </div>
-            <h6 className="card-title">DIVISI DIGITAL MARKETING</h6>
-            <div className="display-4">
-              {
-                data.filter((item) => item.divisi === "Digital Marketing")
-                  .length
-              }
+      </div>
+
+      {/* mobile */}
+      <div className="d-sm-block d-lg-none ">
+        <div className="row container text-white mb-2 card-karyawan ">
+          <div className="card col-sm-6 col-lg bg-c-blue ms-3 ">
+            <div className="card-body">
+              <div className="card-body-icon">
+                <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
+              </div>
+              <h6 className="card-title">TOTAL KARYAWAN AKTIF</h6>
+              <div className="display-4">{data.length}</div>
             </div>
           </div>
         </div>
-      </div>{" "}
+      </div>
     </>
   );
 };
