@@ -112,135 +112,136 @@ const Karyawan = () => {
 
   //Datatable HTML
   return (
-    <div className="MainDiv">
-      <Container>
-        <CardKaryawan />
-
-        <Row className="mt-4">
-          <Col md="{12}">
-            <Card className="border-0 rounded shadow mb-3">
-              <Card.Header as="h5" className="text-center">
-                List Karyawan
-              </Card.Header>
-              <Card.Body>
-                {/* <Link to={"/addkaryawan"}> */}
-                <Button
-                  style={{ backgroundColor: "#b66dff", border: "none" }}
-                  className="btn text-white mb-3 float-end"
-                  size="md"
-                  onClick={handleShow}
-                >
-                  Add Karyawan
-                </Button>
-                {/* </Link> */}
-                <div style={{ overflowX: "auto", width: "100%" }}>
-                  <table
-                    id="example"
-                    className="table table-borderless table-striped hover compact"
+    <>
+      <div className="MainDiv">
+        <Container>
+          <CardKaryawan />
+          <Row className="mt-4">
+            <Col md="{12}">
+              <Card className="border-0 rounded shadow mb-3">
+                <Card.Header as="h5" className="text-center">
+                  List Karyawan
+                </Card.Header>
+                <Card.Body>
+                  {/* <Link to={"/addkaryawan"}> */}
+                  <Button
+                    style={{ backgroundColor: "#b66dff", border: "none" }}
+                    className="btn text-white mb-3 float-end"
+                    size="md"
+                    onClick={handleShow}
                   >
-                    <thead>
-                      <tr>
-                        <th>No</th>
-                        <th>Nama Karyawan</th>
-                        <th>NIK</th>
-                        <th>Lama Bekerja</th>
-                        <th>Divisi</th>
-                        <th>Email</th>
-                        <th>Status Karyawan</th>
-                        <th>Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {data.map((result, index) => {
-                        const now = moment(new Date());
-                        const tglMasuk = moment(result.tanggalmasuk);
-                        const years = now.diff(tglMasuk, "year");
-                        tglMasuk.add(years, "years");
-                        const months = now.diff(tglMasuk, "months");
-                        tglMasuk.add(months, "months");
-                        const days = now.diff(tglMasuk, "days");
+                    Add Karyawan
+                  </Button>
+                  {/* </Link> */}
+                  <div style={{ overflowX: "auto", width: "100%" }}>
+                    <table
+                      id="example"
+                      className="table table-borderless table-striped hover compact"
+                    >
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Nama Karyawan</th>
+                          <th>NIK</th>
+                          <th>Lama Bekerja</th>
+                          <th>Divisi</th>
+                          <th>Email</th>
+                          <th>Status Karyawan</th>
+                          <th>Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {data.map((result, index) => {
+                          const now = moment(new Date());
+                          const tglMasuk = moment(result.tanggalmasuk);
+                          const years = now.diff(tglMasuk, "year");
+                          tglMasuk.add(years, "years");
+                          const months = now.diff(tglMasuk, "months");
+                          tglMasuk.add(months, "months");
+                          const days = now.diff(tglMasuk, "days");
 
-                        return (
-                          <tr key={result.id}>
-                            <td>{index + 1}</td>
-                            <td>{result.fullname}</td>
-                            <td>{result.nik}</td>
-                            <td>
-                              {years +
-                                " Tahun " +
-                                months +
-                                " Bulan " +
-                                days +
-                                " Hari"}
-                            </td>
-                            <td>{result.divisi}</td>
-                            <td>{result.email}</td>
-                            <td>{result.status}</td>
+                          return (
+                            <tr key={result.id}>
+                              <td>{index + 1}</td>
+                              <td>{result.fullname}</td>
+                              <td>{result.nik}</td>
+                              <td>
+                                {years +
+                                  " Tahun " +
+                                  months +
+                                  " Bulan " +
+                                  days +
+                                  " Hari"}
+                              </td>
+                              <td>{result.divisi}</td>
+                              <td>{result.email}</td>
+                              <td>{result.status}</td>
 
-                            <td align="center">
-                              <Button
-                                as={Link}
-                                to={`/infokaryawan/${result.user_id}`}
-                                variant="info"
-                                aria-label="Info Karyawan"
-                                size="sm"
-                                className="btn m-1 text-white"
-                              >
-                                <FontAwesomeIcon icon={faInfo} size="sm" />
-                              </Button>
-                              <Button
-                                as={Link}
-                                to={`/editkaryawan/${result.user_id}`}
-                                style={{
-                                  backgroundColor: "#fed713",
-                                  border: "none",
-                                }}
-                                size="sm"
-                                className="btn m-1"
-                              >
-                                <FontAwesomeIcon icon={faPencil} size="sm" />
-                              </Button>
-                              <Button
-                                style={{
-                                  backgroundColor: "#fe7c96",
-                                  border: "none",
-                                }}
-                                size="sm"
-                                className="btn btn-light text-white m-1"
-                                onClick={() => deleteKaryawan(result.user_id)}
-                              >
-                                <FontAwesomeIcon icon={faTrash} size="sm" />
-                              </Button>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+                              <td align="center">
+                                <Button
+                                  as={Link}
+                                  to={`/infokaryawan/${result.user_id}`}
+                                  variant="info"
+                                  aria-label="Info Karyawan"
+                                  size="sm"
+                                  className="btn m-1 text-white"
+                                >
+                                  <FontAwesomeIcon icon={faInfo} size="sm" />
+                                </Button>
+                                <Button
+                                  as={Link}
+                                  to={`/editkaryawan/${result.user_id}`}
+                                  style={{
+                                    backgroundColor: "#fed713",
+                                    border: "none",
+                                  }}
+                                  size="sm"
+                                  className="btn m-1"
+                                >
+                                  <FontAwesomeIcon icon={faPencil} size="sm" />
+                                </Button>
+                                {/* <Button
+                                  style={{
+                                    backgroundColor: "#fe7c96",
+                                    border: "none",
+                                  }}
+                                  size="sm"
+                                  className="btn btn-light text-white m-1"
+                                  onClick={() => deleteKaryawan(result.user_id)}
+                                >
+                                  <FontAwesomeIcon icon={faTrash} size="sm" />
+                                </Button> */}
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
 
-      <Modal
-        show={show}
-        dialogClassName="modal-90w"
-        contentClassName="custom-modal"
-        onHide={handleClose}
-      >
-        <Modal.Header>
-          <Modal.Title>Add Karyawan</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <ModalAddKaryawan
-            handleClose={handleClose}
-            getKaryawans={getKaryawans}
-          />
-        </Modal.Body>
-      </Modal>
-    </div>
+        <Modal
+          show={show}
+          dialogClassName="modal-90w"
+          contentClassName="custom-modal"
+          onHide={handleClose}
+        >
+          <Modal.Header>
+            <Modal.Title>Add Karyawan</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <ModalAddKaryawan
+              handleClose={handleClose}
+              getKaryawans={getKaryawans}
+            />
+          </Modal.Body>
+        </Modal>
+      </div>
+    </>
   );
 };
 

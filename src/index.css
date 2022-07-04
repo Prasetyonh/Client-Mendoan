@@ -144,7 +144,7 @@ a.active {
 @media screen and (min-width: 800px) {
   .MainDiv,
   .container.dashboard {
-    margin: 6rem;
+    margin: 1rem;
   }
 }
 
