@@ -1,69 +1,50 @@
-import "./App.css";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { Login, Register, Forgot, Dashboard } from "./Pages/user";
-import Navbar from "./Components/Navbar";
-import { Karyawan, EditKaryawan, InfoKaryawan } from "./Pages/karyawan";
-import { Cuti, AddCuti } from "./Pages/cuti";
-import { Resign, AddResign, DetailResign } from "./Pages/Resign";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-import Sidebar from "./Components/Sidebar/SideBar";
+import Login from "./Pages/user/Login";
+import Mendoans from "./Mendoans";
+
+import { API_URL } from "./Utils/Constant";
+import { ForgotPassword } from "./Pages/user";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 function App() {
-  document.body.style.backgroundColor = "#ebdfed";
+  const [isLogin, setIsLogin] = useState(false);
+  useEffect(() => {
+    const checkLogin = async () => {
+      const token = localStorage.getItem("tokenStore");
+      if (token) {
+        const verified = await axios.get(API_URL + "/token", {
+          headers: { Authorization: token },
+        });
+        console.log(verified);
+        setIsLogin(verified.data);
+        if (verified.data === false) return localStorage.clear();
+      } else {
+        setIsLogin(false);
+      }
+    };
+    checkLogin();
+  }, []);
+
   return (
-    <>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/forgot" component={Forgot} />
-          <Sidebar>
-            <Route path="/dashboard">
-              {/* <Navbar /> */}
-              <Dashboard />
-            </Route>
-            <Route path="/karyawan">
-              {/* <Navbar /> */}
-              <Karyawan />
-            </Route>
-            {/* <Route path="/addkaryawan">
-            <Navbar />
-            <AddKaryawan />
-          </Route> */}
-            <Route path="/editkaryawan/:id">
-              {/* <Navbar /> */}
-              <EditKaryawan />
-            </Route>
-            <Route path="/infokaryawan/:id">
-              {/* <Navbar /> */}
-              <InfoKaryawan />
-            </Route>
-            <Route path="/cuti">
-              {/* <Navbar /> */}
-              <Cuti />
-            </Route>
-            <Route path="/addcuti">
-              {/* <Navbar /> */}
-              <AddCuti />
-            </Route>
-            <Route path="/resign">
-              {/* <Navbar /> */}
-              <Resign />
-            </Route>
-            <Route path="/addresign">
-              {/* <Navbar /> */}
-              <AddResign />
-            </Route>
-            <Route path="/detailresign/:id">
-              {/* <Navbar /> */}
-              <DetailResign />
-            </Route>
-          </Sidebar>
-        </Switch>
-      </BrowserRouter>
-    </>
+    <div>
+      {isLogin ? (
+        <Mendoans setIsLogin={setIsLogin} />
+      ) : (
+        <BrowserRouter>
+          <Switch>
+            <div>
+              <Login setIsLogin={setIsLogin} />
+
+              <Route path="/forgot">
+                <ForgotPassword setIsLogin={setIsLogin} />
+              </Route>
+            </div>
+          </Switch>
+        </BrowserRouter>
+      )}
+    </div>
   );
 }
 

@@ -80,6 +80,18 @@ body {
   border-radius: 10px !important;
 }
 
+.to-forgot:hover {
+  cursor: pointer;
+}
+
+.forgot-page,
+.login-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
 /* .nav-link.active {
   color: darkorange !important;
   text-decoration: none !important;

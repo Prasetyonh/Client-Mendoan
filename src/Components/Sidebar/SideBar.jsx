@@ -3,27 +3,17 @@ import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link, useHistory } from "react-router-dom";
-import {
-  FaTh,
-  FaBars,
-  FaUserAlt,
-  FaRegChartBar,
-  FaThList,
-  FaPowerOff,
-  FaRunning,
-} from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { FaTh, FaBars, FaUserAlt, FaPowerOff } from "react-icons/fa";
 
 import { API_URL } from "../../Utils/Constant";
-import { Button, Nav } from "react-bootstrap";
 
-const Sidebar = ({ children }) => {
+const Sidebar = ({ children, setIsLogin }) => {
   const history = useHistory();
 
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  const Logout = async () => {
+  const Logout = async (e) => {
     Swal.fire({
       title: "Are you sure to logout?",
       icon: "warning",
@@ -34,6 +24,8 @@ const Sidebar = ({ children }) => {
     }).then(async (result) => {
       try {
         if (result.isConfirmed) {
+          localStorage.clear();
+          setIsLogin(false);
           await axios.delete(API_URL + "/logout");
           Swal.fire("Success!", "You have successfully logged out.", "success");
           history.push("/");
@@ -80,19 +72,19 @@ const Sidebar = ({ children }) => {
             >
               Karyawan
             </div>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <li>
-                <Link class="dropdown-item" to={"/karyawan"}>
+                <Link className="dropdown-item" to={"/karyawan"}>
                   Karyawan
                 </Link>
               </li>
               <li>
-                <Link class="dropdown-item" to={"/cuti"}>
+                <Link className="dropdown-item" to={"/cuti"}>
                   Cuti
                 </Link>
               </li>
               <li>
-                <Link class="dropdown-item" to={"/resign"}>
+                <Link className="dropdown-item" to={"/resign"}>
                   Resign
                 </Link>
               </li>

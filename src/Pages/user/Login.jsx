@@ -8,7 +8,8 @@ import show from "../../assets/eye.png";
 import hide from "../../assets/hidden.png";
 
 import { API_URL } from "../../Utils/Constant";
-const Login = () => {
+
+const Login = ({ setIsLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
@@ -43,10 +44,12 @@ const Login = () => {
   const Auth = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(API_URL + "/login", {
+      const response = await axios.post(API_URL + "/login", {
         email: email,
         password: password,
       });
+      localStorage.setItem("tokenStore", response.data.accessToken);
+      setIsLogin(true);
       history.push("/karyawan");
     } catch (error) {
       if (error.response) {
@@ -57,7 +60,10 @@ const Login = () => {
 
   return (
     <div>
-      <section className="vh-100" style={{ backgroundColor: "#ebdfed" }}>
+      <section
+        className="vh-100 login-page"
+        style={{ backgroundColor: "#ebdfed" }}
+      >
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col col-xl-10">

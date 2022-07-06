@@ -1,11 +1,11 @@
 import axios from "axios";
 import { Col, Row, Container, Card, Button, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfo, faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faInfo, faPencil } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import moment from "moment";
 import CardKaryawan from "../../Components/CardKaryawan";
 
@@ -85,30 +85,30 @@ const Karyawan = () => {
 
   // Delete Employee
 
-  const deleteKaryawan = async (user_id) => {
-    Swal.fire({
-      title: "Are you sure to delete?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#fe7c96",
-      cancelButtonColor: "#b66dff",
-      confirmButtonText: "Yes, delete it!",
-    }).then(async (result) => {
-      try {
-        if (result.isConfirmed) {
-          await axios.delete(API_URL + `/karyawans/${user_id}`);
-          // .then((response) => {
-          //   console.log(response);
-          // });
-          getKaryawans();
-          Swal.fire("Deleted!", "Employee has been deleted.", "success");
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    });
-  };
+  // const deleteKaryawan = async (user_id) => {
+  //   Swal.fire({
+  //     title: "Are you sure to delete?",
+  //     text: "You won't be able to revert this!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#fe7c96",
+  //     cancelButtonColor: "#b66dff",
+  //     confirmButtonText: "Yes, delete it!",
+  //   }).then(async (result) => {
+  //     try {
+  //       if (result.isConfirmed) {
+  //         await axios.delete(API_URL + `/karyawans/${user_id}`);
+  //         // .then((response) => {
+  //         //   console.log(response);
+  //         // });
+  //         getKaryawans();
+  //         Swal.fire("Deleted!", "Employee has been deleted.", "success");
+  //       }
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   });
+  // };
 
   //Datatable HTML
   return (
