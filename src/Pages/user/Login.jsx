@@ -61,7 +61,7 @@ const Login = ({ setIsLogin }) => {
   return (
     <div>
       <section
-        className="vh-100 login-page"
+        className="vh-100 login-page zoom"
         style={{ backgroundColor: "#ebdfed" }}
       >
         <div className="container py-5 h-100">

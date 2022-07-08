@@ -89,7 +89,7 @@ const ForgotPass = () => {
   return (
     <div>
       <section
-        className="vh-100 forgot-page"
+        className="vh-100 forgot-page  w3-animate-zoom"
         style={{ backgroundColor: "#ebdfed" }}
       >
         <div className="container  h-100">
