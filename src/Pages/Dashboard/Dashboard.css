@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --poppins: "Poppins", sans-serif;
+  --lato: "Lato", sans-serif;
+
+  --light: #f9f9f9;
+  --blue: #3c91e6;
+  --light-blue: #cfe8ff;
+  --grey: #eee;
+  --dark-grey: #5e5e5e;
+  --dark: #342e37;
+  --red: #db504a;
+  --yellow: #ffce26;
+  --light-yellow: #fff2c6;
+  --orange: #fd7238;
+  --light-orange: #ffe0d3;
+}
+
+.box-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-gap: 24px;
+  margin-top: 36px;
+  margin-right: 36px;
+}
+.box-info li {
+  padding: 14px;
+  background: var(--light);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  grid-gap: 24px;
+}
+.box-info li .bx {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box-info li:nth-child(1) .bx {
+  background: var(--red);
+  color: white;
+}
+.box-info li:nth-child(2) .bx {
+  background: var(--orange);
+  color: white;
+}
+.box-info li:nth-child(3) .bx {
+  background: var(--yellow);
+  color: white;
+}
+.box-info li:nth-child(4) .bx {
+  background: var(--blue);
+  color: white;
+}
+.box-info li .text h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--dark);
+}
+.box-info li .text p {
+  font-weight: bold;
+  color: var(--dark-grey);
+}

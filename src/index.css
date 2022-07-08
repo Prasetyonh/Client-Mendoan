@@ -45,7 +45,7 @@ body {
 .card-body-icon {
   position: absolute;
   z-index: 0;
-  top: 12px;
+  top: 5px;
   right: 4px;
   opacity: 0.4;
   font-size: 90px;
@@ -90,6 +90,10 @@ body {
   top: 0;
   left: 0;
   width: 100%;
+}
+
+.project-name {
+  background: var(rgb(79, 79, 237));
 }
 
 /* .nav-link.active {
@@ -163,7 +167,7 @@ a.active {
 @media screen and (max-width: 450px) {
   .MainDiv,
   .container.dashboard {
-    margin: 6rem 0;
+    margin: 2rem 0;
   }
   .col-sm-6 {
     margin-bottom: 3px;
@@ -171,5 +175,13 @@ a.active {
   .modal-90w {
     width: 70%;
     max-width: 100% !important;
+  }
+
+  .card-body-icon {
+    position: absolute;
+    z-index: 0;
+    right: 4px;
+    opacity: 0.4;
+    font-size: 70px;
   }
 }

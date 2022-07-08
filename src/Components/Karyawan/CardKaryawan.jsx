@@ -3,7 +3,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
-import { API_URL } from "../Utils/Constant";
+import { API_URL } from "../../Utils/Constant";
 
 const CardKaryawan = () => {
   const [data, setData] = useState([]);
@@ -76,7 +76,7 @@ const CardKaryawan = () => {
       </div>
 
       {/* mobile */}
-      <div className="d-sm-block d-lg-none ">
+      <div className="d-sm-block d-md-none ">
         <div className="row container text-white mb-2 card-karyawan ">
           <div className="card col-sm-6 col-lg bg-c-blue ms-3 ">
             <div className="card-body">

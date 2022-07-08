@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link, useHistory } from "react-router-dom";
-import { FaTh, FaBars, FaUserAlt, FaPowerOff } from "react-icons/fa";
+import { FaUserAlt, FaPowerOff, FaUserCog } from "react-icons/fa";
+import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
+import { RiDashboardFill } from "react-icons/ri";
 
 import { API_URL } from "../../Utils/Constant";
 
@@ -40,15 +42,30 @@ const Sidebar = ({ children, setIsLogin }) => {
       <div style={{ width: isOpen ? "200px" : "50px" }} className="sidebar">
         <div className="top_section">
           <h1 style={{ display: isOpen ? "block" : "none" }} className="logo">
-            Mendoan
+            <img
+              className="w3-animate-left"
+              src="../assets/images/logotext.png"
+              width="160"
+              height="40"
+              alt=""
+            />
           </h1>
-          <div style={{ marginLeft: isOpen ? "15px" : "0px" }} className="bars">
-            <FaBars onClick={toggle} />
+          <div style={{ marginLeft: isOpen ? "5px" : "0px" }} className="bars">
+            <AiOutlineMenuUnfold
+              style={{ display: isOpen ? "none" : "block" }}
+              onClick={toggle}
+              className="w3-animate-right"
+            />
+            <AiOutlineMenuFold
+              className="w3-animate-left"
+              style={{ display: isOpen ? "block" : "none" }}
+              onClick={toggle}
+            />
           </div>
         </div>
 
         <Link className="link" to={"/dashboard"}>
-          <FaTh className="icon " />{" "}
+          <RiDashboardFill className="icon " />{" "}
           <div
             className="link_text ms-5"
             style={{ display: isOpen ? "block" : "none" }}
@@ -91,6 +108,16 @@ const Sidebar = ({ children, setIsLogin }) => {
             </ul>
           </Link>
         </div>
+
+        <Link className="link" to={"/users"}>
+          <FaUserCog className="icon " />{" "}
+          <div
+            className="link_text ms-5"
+            style={{ display: isOpen ? "block" : "none" }}
+          >
+            Users
+          </div>{" "}
+        </Link>
 
         <div className="link" onClick={Logout}>
           <FaPowerOff className="icon" />

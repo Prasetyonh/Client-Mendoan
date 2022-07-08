@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 // import Swal from "sweetalert2";
 import moment from "moment";
-import CardKaryawan from "../../Components/CardKaryawan";
+import CardKaryawan from "../../Components/Karyawan/CardKaryawan";
 
 import ModalAddKaryawan from "../../Components/Karyawan/modalAddKaryawan";
 
@@ -60,6 +60,7 @@ const Karyawan = () => {
       //Storing users detail in state array object
       const data = res.data;
       setData(data);
+      console.log(data);
     });
     //initialize datatable
     $(document).ready(function () {

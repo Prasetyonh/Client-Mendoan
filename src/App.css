@@ -18,12 +18,15 @@ main {
   padding: 20px 15px;
 }
 .logo {
-  font-size: 30px;
+  margin-left: -15px;
+  animation-delay: 4s;
 }
 .bars {
   display: flex;
   font-size: 25px;
   margin-left: 50px;
+  transition: all 1.5s;
+  cursor: pointer;
 }
 
 .link {
@@ -31,7 +34,7 @@ main {
   color: #b66cff;
   padding: 10px 15px;
   gap: 15px;
-  transition: all 0.5s;
+  transition: all 1.5s;
   text-decoration: none;
   cursor: pointer;
 }

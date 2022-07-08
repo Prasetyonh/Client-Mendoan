@@ -2,13 +2,14 @@ import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { Dashboard } from "./Pages/user";
+import { Users } from "./Pages/user";
 // import Navbar from "./Components/Navbar";
 import { Karyawan, EditKaryawan, InfoKaryawan } from "./Pages/karyawan";
 import { Cuti, AddCuti } from "./Pages/cuti";
 import { Resign, AddResign, DetailResign } from "./Pages/Resign";
 
 import Sidebar from "./Components/Sidebar/SideBar";
+import Dashboard from "./Pages/Dashboard/Dashboard";
 
 function Mendoans({ setIsLogin }) {
   document.body.style.backgroundColor = "#ebdfed";
@@ -20,6 +21,10 @@ function Mendoans({ setIsLogin }) {
             <Route path="/dashboard">
               {/* <Navbar /> */}
               <Dashboard />
+            </Route>
+            <Route path="/users">
+              {/* <Navbar /> */}
+              <Users />
             </Route>
             <Route path="/karyawan">
               {/* <Navbar /> */}
