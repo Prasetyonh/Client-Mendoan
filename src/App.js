@@ -6,7 +6,7 @@ import Mendoans from "./Mendoans";
 
 import { API_URL } from "./Utils/Constant";
 import { ForgotPassword } from "./Pages/user";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -32,15 +32,13 @@ function App() {
         <Mendoans setIsLogin={setIsLogin} />
       ) : (
         <BrowserRouter>
-          <Switch>
-            <div>
-              <Login setIsLogin={setIsLogin} />
+          <div>
+            <Login setIsLogin={setIsLogin} />
 
-              <Route path="/forgot">
-                <ForgotPassword setIsLogin={setIsLogin} />
-              </Route>
-            </div>
-          </Switch>
+            <Route path="/forgot">
+              <ForgotPassword setIsLogin={setIsLogin} />
+            </Route>
+          </div>
         </BrowserRouter>
       )}
     </div>

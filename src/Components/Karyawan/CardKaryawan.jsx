@@ -23,7 +23,7 @@ const CardKaryawan = () => {
   return (
     <>
       {/* desktop */}
-      <div className="d-md-block d-none">
+      <div className="d-md-block d-none mt-4">
         <div className="row container text-white mb-2 card-karyawan ">
           <div className="card col-sm-6 col-lg bg-c-blue ms-3 ">
             <div className="card-body">

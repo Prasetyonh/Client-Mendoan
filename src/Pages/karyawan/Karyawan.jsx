@@ -115,6 +115,7 @@ const Karyawan = () => {
   return (
     <>
       <div className="MainDiv">
+        <h6 className="text-secondary ms-3">KARYAWAN</h6>
         <Container>
           <CardKaryawan />
           <Row className="mt-4">

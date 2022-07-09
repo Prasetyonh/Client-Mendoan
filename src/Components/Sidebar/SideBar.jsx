@@ -47,7 +47,7 @@ const Sidebar = ({ children, setIsLogin }) => {
               src="../assets/images/logotext.png"
               width="160"
               height="40"
-              alt=""
+              alt="mendoan logo"
             />
           </h1>
           <div style={{ marginLeft: isOpen ? "5px" : "0px" }} className="bars">
@@ -75,7 +75,7 @@ const Sidebar = ({ children, setIsLogin }) => {
         </Link>
 
         <div className="dropdown">
-          <Link className="link ">
+          <div className="link ">
             <FaUserAlt
               className="icon "
               data-bs-toggle="dropdown"
@@ -106,7 +106,7 @@ const Sidebar = ({ children, setIsLogin }) => {
                 </Link>
               </li>
             </ul>
-          </Link>
+          </div>
         </div>
 
         <Link className="link" to={"/users"}>

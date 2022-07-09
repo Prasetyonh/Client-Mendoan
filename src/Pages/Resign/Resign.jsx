@@ -62,9 +62,10 @@ const Resign = () => {
   };
 
   return (
-    <div className="MainDiv " style={{ display: "flex" }}>
-      <Container>
-        <Row className="mt-4">
+    <div className="MainDiv">
+      <h6 className="text-secondary ms-3">RESIGN</h6>
+      <Container className="mt-2">
+        <Row className="mt-5">
           <Col md="{12}">
             <Card className="border-0 rounded shadow mb-3">
               <Card.Header as="h5" className="text-center">
@@ -100,7 +101,7 @@ const Resign = () => {
                     <tbody>
                       {data.map((result, index) => {
                         return (
-                          <tr key={result.id}>
+                          <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{result.fullname}</td>
                             <td>{result.nik}</td>
@@ -108,7 +109,7 @@ const Resign = () => {
                               {dataResign.map((resign, idx) => {
                                 if (result.user_id === resign.user_id) {
                                   return (
-                                    <div>
+                                    <div key={idx}>
                                       {moment(resign.tanggalresign).format(
                                         "DD-MM-YYYY"
                                       )}

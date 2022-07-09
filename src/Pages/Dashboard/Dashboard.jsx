@@ -75,9 +75,9 @@ const Dashboard = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {data.map((result) => {
+                    {data.map((result, idx) => {
                       return (
-                        <tr key={result.id}>
+                        <tr key={idx}>
                           <td style={{ color: "#b66cfd" }}>{result.name}</td>
                           <td>{result.fullname}</td>
                           <td>{result.type}</td>

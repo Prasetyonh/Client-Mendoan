@@ -85,6 +85,7 @@ const Cuti = () => {
 
   return (
     <div className="MainDiv">
+      <h6 className="text-secondary ms-3 mb-4">CUTI</h6>
       <Container>
         <Row>
           <Col md="{12}">
