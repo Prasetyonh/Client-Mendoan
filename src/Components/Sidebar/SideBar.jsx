@@ -5,7 +5,8 @@ import Swal from "sweetalert2";
 import { Link, useHistory } from "react-router-dom";
 import { FaUserAlt, FaPowerOff, FaUserCog } from "react-icons/fa";
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
-import { RiDashboardFill } from "react-icons/ri";
+import { RiDashboardFill, RiBookMarkFill } from "react-icons/ri";
+import { BsFillBookmarkPlusFill } from "react-icons/bs";
 
 import { API_URL } from "../../Utils/Constant";
 
@@ -67,7 +68,7 @@ const Sidebar = ({ children, setIsLogin }) => {
         <Link className="link" to={"/dashboard"}>
           <RiDashboardFill className="icon " />{" "}
           <div
-            className="link_text ms-5"
+            className="link_text ms-3"
             style={{ display: isOpen ? "block" : "none" }}
           >
             Dashboard
@@ -82,7 +83,7 @@ const Sidebar = ({ children, setIsLogin }) => {
               aria-expanded="false"
             />
             <div
-              className="link_text dropdown-toggle ms-5"
+              className="link_text dropdown-toggle ms-3"
               data-bs-toggle="dropdown"
               aria-expanded="false"
               style={{ display: isOpen ? "block" : "none" }}
@@ -109,10 +110,30 @@ const Sidebar = ({ children, setIsLogin }) => {
           </div>
         </div>
 
+        <Link className="link" to={"/assignment"}>
+          <RiBookMarkFill className="icon " />{" "}
+          <div
+            className="link_text ms-3"
+            style={{ display: isOpen ? "block" : "none" }}
+          >
+            Report Assignment
+          </div>{" "}
+        </Link>
+
+        <Link className="link" to={"/addassignment"}>
+          <BsFillBookmarkPlusFill className="icon " />{" "}
+          <div
+            className="link_text ms-3"
+            style={{ display: isOpen ? "block" : "none" }}
+          >
+            Tambah Assignment
+          </div>{" "}
+        </Link>
+
         <Link className="link" to={"/users"}>
           <FaUserCog className="icon " />{" "}
           <div
-            className="link_text ms-5"
+            className="link_text ms-3"
             style={{ display: isOpen ? "block" : "none" }}
           >
             Users
@@ -122,7 +143,7 @@ const Sidebar = ({ children, setIsLogin }) => {
         <div className="link" onClick={Logout}>
           <FaPowerOff className="icon" />
           <div
-            className="link_text ms-5"
+            className="link_text ms-3"
             style={{ display: isOpen ? "block" : "none" }}
           >
             Logout

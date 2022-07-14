@@ -1,8 +1,8 @@
 /* eslint-disable array-callback-return */
 import React, { useState, useEffect } from "react";
 import { Col, Row, Container, Card, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfo } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
@@ -123,17 +123,20 @@ const Resign = () => {
                             <td>{result.email}</td>
                             <td>{result.status}</td>
 
-                            <td align="center">
-                              <Button
-                                as={Link}
-                                to={`/detailresign/${result.user_id}`}
-                                variant="info"
+                            <td>
+                              <p
                                 aria-label="Info Karyawan"
+                                style={{ color: "#b66dff" }}
                                 size="sm"
-                                className="btn m-1 text-white"
+                                className="btn m-1"
+                                onClick={() => {
+                                  history.push(
+                                    `/detailresign/${result.user_id}`
+                                  );
+                                }}
                               >
-                                <FontAwesomeIcon icon={faInfo} size="sm" />
-                              </Button>
+                                Detail
+                              </p>
                               {/* <Button
                                 as={Link}
                                 to={`/editkaryawan/${result.user_id}`}

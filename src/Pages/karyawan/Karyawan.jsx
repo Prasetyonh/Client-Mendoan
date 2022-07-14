@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 // import Swal from "sweetalert2";
 import moment from "moment";
-import CardKaryawan from "../../Components/Karyawan/CardKaryawan";
+// import CardKaryawan from "../../Components/Karyawan/CardKaryawan";
 
 import ModalAddKaryawan from "../../Components/Karyawan/modalAddKaryawan";
 
@@ -117,7 +117,7 @@ const Karyawan = () => {
       <div className="MainDiv">
         <h6 className="text-secondary ms-3">KARYAWAN</h6>
         <Container>
-          <CardKaryawan />
+          {/* <CardKaryawan /> */}
           <Row className="mt-4">
             <Col md="{12}">
               <Card className="border-0 rounded shadow mb-3">

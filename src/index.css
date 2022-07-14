@@ -96,6 +96,12 @@ body {
   background: var(rgb(79, 79, 237));
 }
 
+option {
+  background-color: white;
+  color: black;
+  text-align: start;
+}
+
 /* .nav-link.active {
   color: darkorange !important;
   text-decoration: none !important;
