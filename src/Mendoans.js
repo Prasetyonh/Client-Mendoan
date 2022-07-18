@@ -10,7 +10,11 @@ import { Resign, AddResign, DetailResign } from "./Pages/Resign";
 
 import Sidebar from "./Components/Sidebar/SideBar";
 import Dashboard from "./Pages/Dashboard/Dashboard";
-import { ReportAssignment, AddAssignment } from "./Pages/Assignment";
+import {
+  ReportAssignment,
+  AddAssignment,
+  EditAssignment,
+} from "./Pages/Assignment";
 
 function Mendoans({ setIsLogin }) {
   document.body.style.backgroundColor = "#ebdfed";
@@ -70,6 +74,10 @@ function Mendoans({ setIsLogin }) {
             <Route path="/addassignment">
               {/* <Navbar /> */}
               <AddAssignment />
+            </Route>
+            <Route path="/editassignment/:id">
+              {/* <Navbar /> */}
+              <EditAssignment />
             </Route>
           </Sidebar>
         </Switch>

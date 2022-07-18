@@ -96,7 +96,7 @@ const ReportAssignment = () => {
                           <td>
                             <Button
                               as={Link}
-                              to={`/editassignment/${result.user_id}`}
+                              to={`/editassignment/${result.id}`}
                               style={{
                                 backgroundColor: "#fed713",
                                 border: "none",

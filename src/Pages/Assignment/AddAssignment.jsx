@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-concat */
 import { React, useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Swal from "sweetalert2";
 import {
@@ -25,13 +25,17 @@ const TambahAssignment = () => {
   const [dataProject, setDataProject] = useState("");
   const [dataProjectManager, setDataProjectManager] = useState("");
 
+  const [assignment_id] = useState("");
+  const [user_id, setUser_id] = useState("");
   const [nama, setNama] = useState("");
   const [namaProject, setNamaProject] = useState("");
   const [projectManager, setProjectManager] = useState("");
   const [assignmentType, setAssignmentType] = useState("");
-  const [CR, setCR] = useState(null);
+  const [assignmentStatus] = useState("ACTIVE");
+  const [CR, setCR] = useState("");
   const [dateAssignment, setDateAssignment] = useState("");
   const [endAssignment, setEndAssignment] = useState("");
+  const { extendassignment } = useState(" " ? null : "");
 
   const history = useHistory();
   const [msg, setMsg] = useState("");
@@ -112,6 +116,15 @@ const TambahAssignment = () => {
     }
   };
 
+  const onChange = (e) => {
+    setUser_id(
+      dataKaryawan.find((item) => item.fullname === e.target.value).user_id
+    );
+    setNama(
+      dataKaryawan.find((item) => item.fullname === e.target.value).fullname
+    );
+  };
+
   const addAssignment = async () => {
     Swal.fire({
       title: "Are you sure?",
@@ -124,12 +137,17 @@ const TambahAssignment = () => {
     }).then(async (result) => {
       try {
         if (result.isConfirmed) {
+          setUser_id(user_id);
           await axios.post(FAKEAPI_URL + `/assignment`, {
+            crname: CR ? CR : null,
+            user_id: user_id,
             fullname: nama,
             name: namaProject,
+            assignment_id: assignment_id,
             pm: projectManager,
             assignmenttype: assignmentType,
-            crname: CR,
+            status: assignmentStatus,
+            extendassignment: extendassignment ? extendassignment : null,
             dateassignment: dateAssignment,
             endassignment: endAssignment,
           });
@@ -164,7 +182,7 @@ const TambahAssignment = () => {
           <Col>
             <Card className="border-0 rounded shadow mb-5">
               <Card.Header as="h5" className=" bg-white">
-                Add Karyawan Resign
+                Add Assignment
               </Card.Header>
               <Card.Body>
                 {msg.errors && (
@@ -190,24 +208,23 @@ const TambahAssignment = () => {
                           as="select"
                           required
                           value={nama}
-                          onChange={(e) => setNama(e.target.value)}
+                          onChange={onChange}
                         >
                           <option value={""} hidden>
                             -Pilih Nama Karyawan-
                           </option>
                           {dataKaryawan.length > 0 ? (
-                            dataKaryawan.map((nama, idx) => {
+                            dataKaryawan.map((data) => {
                               return (
                                 <option
                                   style={{
                                     backgroundColor: "white",
                                     color: "black",
                                   }}
-                                  text={nama.id}
-                                  key={idx}
-                                  value={nama.fullname}
+                                  key={data.user_id}
+                                  value={data.fullname}
                                 >
-                                  {nama.fullname}
+                                  {data.fullname}
                                 </option>
                               );
                             })
@@ -337,6 +354,7 @@ const TambahAssignment = () => {
                       </div>
                       <div className="col-md-10">
                         <Form.Control
+                          name="crName"
                           className="form-control w-25"
                           type="text"
                           value={CR}

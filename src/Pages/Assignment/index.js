@@ -1,4 +1,5 @@
 import ReportAssignment from "./ReportAssignment";
 import AddAssignment from "./AddAssignment";
+import EditAssignment from "./EditAssignment";
 
-export { ReportAssignment, AddAssignment };
+export { ReportAssignment, AddAssignment, EditAssignment };
