@@ -20,6 +20,7 @@ const AddCuti = () => {
   const [username, setUserName] = useState("");
   const [expire, setExpire] = useState("");
   //state
+  const [user_id, setUser_id] = useState("");
   const [namaKaryawan, setNamaKaryawan] = useState("");
   const [nama, setNama] = useState("");
   const [tanggal, setTanggal] = useState("");
@@ -93,6 +94,15 @@ const AddCuti = () => {
     }
   };
 
+  const onChange = (e) => {
+    setUser_id(
+      namaKaryawan.find((item) => item.fullname === e.target.value).user_id
+    );
+    setNama(
+      namaKaryawan.find((item) => item.fullname === e.target.value).fullname
+    );
+  };
+
   const addCuti = async (e) => {
     e.preventDefault();
     Swal.fire({
@@ -109,6 +119,7 @@ const AddCuti = () => {
         try {
           await axios.post(API_URL + "/cuti", {
             name: nama,
+            user_id: user_id,
             tanggal: tanggal,
             keterangan: keterangan,
             createdby: username,
@@ -170,7 +181,7 @@ const AddCuti = () => {
                               as="select"
                               required
                               value={nama}
-                              onChange={(e) => setNama(e.target.value)}
+                              onChange={onChange}
                             >
                               <option value={""} hidden>
                                 -Pilih Nama Karyawan-

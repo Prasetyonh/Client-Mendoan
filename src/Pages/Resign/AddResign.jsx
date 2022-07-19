@@ -228,7 +228,7 @@ const AddResign = () => {
                           showCheckbox
                           value={handoverKaryawan}
                           onChange={(e) => setHandoverKaryawan(e.target.value)}
-                          className="w-25"
+                          className="form-multiple"
                         />
                       </div>
                     </div>

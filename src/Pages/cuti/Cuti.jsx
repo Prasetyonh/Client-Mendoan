@@ -114,7 +114,7 @@ const Cuti = () => {
                         <th style={{ width: "25%" }}>Nama Karyawan</th>
                         <th style={{ width: "20%" }}>Tanggal Cuti</th>
                         <th style={{ width: "35%" }}>Keterangan</th>
-                        <th>Aksi</th>
+                        <th> Action</th>
                       </tr>
                     </thead>
                     <tbody>

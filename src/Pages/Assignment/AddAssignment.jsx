@@ -1,6 +1,7 @@
 /* eslint-disable no-useless-concat */
 import { React, useState, useEffect } from "react";
 import axios from "axios";
+import "./assignment.css";
 import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Swal from "sweetalert2";
@@ -25,7 +26,6 @@ const TambahAssignment = () => {
   const [dataProject, setDataProject] = useState("");
   const [dataProjectManager, setDataProjectManager] = useState("");
 
-  const [assignment_id] = useState("");
   const [user_id, setUser_id] = useState("");
   const [nama, setNama] = useState("");
   const [namaProject, setNamaProject] = useState("");
@@ -143,7 +143,6 @@ const TambahAssignment = () => {
             user_id: user_id,
             fullname: nama,
             name: namaProject,
-            assignment_id: assignment_id,
             pm: projectManager,
             assignmenttype: assignmentType,
             status: assignmentStatus,

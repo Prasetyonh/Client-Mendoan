@@ -5,10 +5,13 @@ import jwt_decode from "jwt-decode";
 import { useHistory } from "react-router-dom";
 import CardSummary from "./CardSummary";
 import { Col, Row, Card } from "react-bootstrap";
+import { GridLoader } from "react-spinners";
 
 import { API_URL, FAKEAPI_URL } from "../../Utils/Constant";
 
 const Dashboard = () => {
+  const [loading, setLoading] = useState(false);
+
   const [setToken] = useState("");
   const [setExpire] = useState("");
 
@@ -18,7 +21,10 @@ const Dashboard = () => {
 
   useEffect(() => {
     refreshToken();
-
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
     getLastTen();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -64,30 +70,43 @@ const Dashboard = () => {
               List Activity
             </Card.Header>
             <Card.Body>
-              <div style={{ overflowX: "auto" }}>
-                <table className="table table-borderless table-striped hover compact">
-                  <thead>
-                    <tr style={{ color: "#5e5e5e" }}>
-                      <th>NAMA PROJECT / BOARD</th>
-                      <th>DIUPDATE OLEH</th>
-                      <th>KEGIATAN</th>
-                      <th>TANGGAL</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.map((result, idx) => {
-                      return (
-                        <tr key={idx}>
-                          <td style={{ color: "#b66cfd" }}>{result.name}</td>
-                          <td>{result.fullname}</td>
-                          <td>{result.type}</td>
-                          <td>{result.tanggal}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
+              {loading ? (
+                <center>
+                  <GridLoader
+                    color="#b66cfd"
+                    loading
+                    margin={8}
+                    size={30}
+                    speedMultiplier={1}
+                  />
+                </center>
+              ) : (
+                <div style={{ overflowX: "auto" }}>
+                  <table className="table table-borderless table-striped hover compact">
+                    <thead>
+                      <tr style={{ color: "#5e5e5e" }}>
+                        <th>NAMA PROJECT / BOARD</th>
+                        <th>DIUPDATE OLEH</th>
+                        <th>KEGIATAN</th>
+                        <th>TANGGAL</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {data.map((result, idx) => {
+                        return (
+                          <tr key={idx}>
+                            <td style={{ color: "#b66cfd" }}>{result.name}</td>
+                            <td>{result.fullname}</td>
+                            <td>{result.type}</td>
+                            <td>{result.tanggal}</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </Card.Body>
           </Card>
         </Col>

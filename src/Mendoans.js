@@ -21,7 +21,7 @@ function Mendoans({ setIsLogin }) {
   return (
     <>
       <BrowserRouter>
-        <Switch>
+        <Switch setIsLogin={setIsLogin}>
           <Sidebar setIsLogin={setIsLogin}>
             <Route path="/dashboard">
               {/* <Navbar /> */}

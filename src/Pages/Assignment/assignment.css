@@ -18,3 +18,10 @@
   margin-top: 5px;
   margin-bottom: 20px;
 }
+
+@media screen and (max-width: 450px) {
+  .form-select,
+  .form-control {
+    width: 100% !important;
+  }
+}

@@ -1,20 +1,33 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link, useHistory } from "react-router-dom";
 import { FaUserAlt, FaPowerOff, FaUserCog } from "react-icons/fa";
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
 import { RiDashboardFill, RiBookMarkFill } from "react-icons/ri";
-import { BsFillBookmarkPlusFill } from "react-icons/bs";
+import { BsFillBookmarkPlusFill, BsDot } from "react-icons/bs";
+import { IoMdArrowDropdown } from "react-icons/io";
+import "./sidebar.css";
+
+import "jquery/dist/jquery.min.js";
+import $ from "jquery";
 
 import { API_URL } from "../../Utils/Constant";
 
 const Sidebar = ({ children, setIsLogin }) => {
   const history = useHistory();
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
+  useEffect(() => {
+    $(document).ready(function () {
+      $(".parent").click(function () {
+        $(" .sub-menu").toggleClass("show");
+      });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const Logout = async (e) => {
     Swal.fire({
@@ -75,40 +88,55 @@ const Sidebar = ({ children, setIsLogin }) => {
           </div>{" "}
         </Link>
 
-        <div className="dropdown">
-          <div className="link ">
-            <FaUserAlt
-              className="icon "
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            />
-            <div
-              className="link_text dropdown-toggle ms-3"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              style={{ display: isOpen ? "block" : "none" }}
-            >
-              Karyawan
-            </div>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li>
-                <Link className="dropdown-item" to={"/karyawan"}>
-                  Karyawan
-                </Link>
-              </li>
-              <li>
-                <Link className="dropdown-item" to={"/cuti"}>
-                  Cuti
-                </Link>
-              </li>
-              <li>
-                <Link className="dropdown-item" to={"/resign"}>
-                  Resign
-                </Link>
-              </li>
-            </ul>
+        <Link
+          to={"#"}
+          className="link parent"
+          onClick={() => {
+            !isOpen ? setIsOpen(true) : setIsOpen(true);
+          }}
+        >
+          <FaUserAlt className="icon" />
+          <div
+            className=" link_text ms-3"
+            style={{ display: isOpen ? "block" : "none" }}
+          >
+            Karyawan <IoMdArrowDropdown />
           </div>
-        </div>
+        </Link>
+        <ul className="sub-menu ms-3">
+          <Link
+            to={"/karyawan"}
+            className="link"
+            style={{ display: isOpen ? "block" : "none" }}
+          >
+            <div className="list-sub-menu">
+              <BsDot />
+              List Karyawan
+            </div>
+          </Link>
+          <Link
+            to={"/cuti"}
+            className="link"
+            style={{ display: isOpen ? "block" : "none" }}
+          >
+            <div className="list-sub-menu">
+              {" "}
+              <BsDot />
+              Karyawan Cuti
+            </div>
+          </Link>
+          <Link
+            to={"/resign"}
+            className="link"
+            style={{ display: isOpen ? "block" : "none" }}
+          >
+            <div className="list-sub-menu">
+              {" "}
+              <BsDot />
+              Karyawan Resign
+            </div>
+          </Link>
+        </ul>
 
         <Link className="link" to={"/assignment"}>
           <RiBookMarkFill className="icon " />{" "}
