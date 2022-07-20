@@ -99,7 +99,7 @@ const ForgotPass = () => {
                 <div className="row g-0">
                   <div className="col-md-6 col-lg-5 d-none d-md-block mt-lg-5">
                     <img
-                      src="../assets/images/ForgotPassword.png"
+                      src="../assets/images/forgotPass.png"
                       alt="login form"
                       className="img-fluid mt-5"
                       style={{ borderRadius: "1rem 0 0 1rem" }}
@@ -144,7 +144,13 @@ const ForgotPass = () => {
                         </Form.Group>
                         {showBtn ? (
                           <>
-                            <Button variant="primary" type="submit">
+                            <Button
+                              style={{
+                                backgroundColor: "#b66dff",
+                                border: "none",
+                              }}
+                              type="submit"
+                            >
                               Submit
                             </Button>
                           </>
@@ -195,7 +201,13 @@ const ForgotPass = () => {
                                 />
                               </InputGroup.Text>
                             </InputGroup>
-                            <Button variant="primary" type="submit">
+                            <Button
+                              style={{
+                                backgroundColor: "#b66dff",
+                                border: "none",
+                              }}
+                              type="submit"
+                            >
                               Reset Password
                             </Button>
                           </Form>
@@ -204,7 +216,7 @@ const ForgotPass = () => {
                       <p className="mt-2 text-danger">{msg}</p>
                       <p>
                         Back to
-                        <Link to={"/"} style={{ textDecoration: "none" }}>
+                        <Link className="text-primary" to={"/"}>
                           {"  "}Login
                         </Link>
                       </p>

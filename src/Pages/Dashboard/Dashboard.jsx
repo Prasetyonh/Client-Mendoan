@@ -44,12 +44,16 @@ const Dashboard = () => {
     }
   };
 
-  const getLastTen = () => {
-    axios.get(FAKEAPI_URL + "/lastten").then((res) => {
-      const data = res.data;
-      console.log(data);
-      setData(data);
-    });
+  const getLastTen = async () => {
+    try {
+      axios.get(FAKEAPI_URL + "/lastten").then((res) => {
+        const data = res.data;
+        console.log(data);
+        setData(data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

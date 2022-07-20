@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Users } from "./Pages/user";
@@ -10,6 +10,7 @@ import { Resign, AddResign, DetailResign } from "./Pages/Resign";
 
 import Sidebar from "./Components/Sidebar/SideBar";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import Error404 from "./Components/404NotFound/404NotFound";
 import {
   ReportAssignment,
   AddAssignment,
@@ -21,8 +22,9 @@ function Mendoans({ setIsLogin }) {
   return (
     <>
       <BrowserRouter>
-        <Switch setIsLogin={setIsLogin}>
-          <Sidebar setIsLogin={setIsLogin}>
+        {" "}
+        <Sidebar setIsLogin={setIsLogin}>
+          <Switch setIsLogin={setIsLogin}>
             <Route path="/dashboard">
               {/* <Navbar /> */}
               <Dashboard />
@@ -79,8 +81,12 @@ function Mendoans({ setIsLogin }) {
               {/* <Navbar /> */}
               <EditAssignment />
             </Route>
-          </Sidebar>
-        </Switch>
+            <Route exact path="/">
+              <Redirect to="/dashboard" />
+            </Route>{" "}
+            <Route path="*" component={Error404} />
+          </Switch>{" "}
+        </Sidebar>
       </BrowserRouter>
     </>
   );

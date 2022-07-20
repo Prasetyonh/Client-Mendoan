@@ -50,7 +50,7 @@ const Login = ({ setIsLogin }) => {
       });
       localStorage.setItem("tokenStore", response.data.accessToken);
       setIsLogin(true);
-      history.push("/karyawan");
+      history.push("/dashboard");
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
@@ -71,7 +71,7 @@ const Login = ({ setIsLogin }) => {
                 <div className="row g-0">
                   <div className="col-md-6 col-lg-5 d-none d-md-block mt-lg-5">
                     <img
-                      src="../assets/images/SignIn.png"
+                      src="../assets/images/Login.png"
                       alt="login form"
                       className="img-fluid mt-3"
                       style={{ borderRadius: "1rem 0 0 1rem" }}
@@ -85,7 +85,7 @@ const Login = ({ setIsLogin }) => {
                           style={{ marginLeft: "-20px", marginBottom: "-25px" }}
                         >
                           <img
-                            src="../assets/images/mendoans.png"
+                            src="../assets/images/logotext.png"
                             width="350"
                             height="90"
                             alt="mendoans"
@@ -142,14 +142,15 @@ const Login = ({ setIsLogin }) => {
                           </InputGroup>
                           <p className="mt-2 text-danger">{msg}</p>
                         </Form.Group>
-                        <Link
-                          className="small text-decoration-none"
-                          to={"/forgot"}
-                        >
+                        <Link className="text-primary" to={"/forgot"}>
                           Forgot password?
                         </Link>
                         <br />
-                        <Button className="mt-3" type="submit">
+                        <Button
+                          style={{ backgroundColor: "#b66dff", border: "none" }}
+                          className="mt-3"
+                          type="submit"
+                        >
                           Login
                         </Button>
                       </Form>

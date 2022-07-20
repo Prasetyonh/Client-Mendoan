@@ -103,7 +103,7 @@ const Sidebar = ({ children, setIsLogin }) => {
             Karyawan <IoMdArrowDropdown />
           </div>
         </Link>
-        <ul className="sub-menu ms-3">
+        <ul className="sub-menu ms-3 w3-animate-left">
           <Link
             to={"/karyawan"}
             className="link"

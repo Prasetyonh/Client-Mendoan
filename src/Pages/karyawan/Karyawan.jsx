@@ -1,7 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { Col, Row, Container, Card, Button, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfo, faPencil } from "@fortawesome/free-solid-svg-icons";
+import {
+  faInfo,
+  faPencil,
+  faFileExcel,
+} from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
@@ -9,6 +14,7 @@ import jwt_decode from "jwt-decode";
 import moment from "moment";
 // import CardKaryawan from "../../Components/Karyawan/CardKaryawan";
 import { GridLoader } from "react-spinners";
+import * as XLSX from "xlsx";
 
 import ModalAddKaryawan from "../../Components/Karyawan/modalAddKaryawan";
 
@@ -44,7 +50,6 @@ const Karyawan = () => {
       setLoading(false);
     }, 500);
     getKaryawans();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const refreshToken = async () => {
@@ -61,19 +66,32 @@ const Karyawan = () => {
     }
   };
 
-  const getKaryawans = () => {
-    axios.get(API_URL + "/karyawans").then((res) => {
-      //Storing users detail in state array object
-      const data = res.data;
-      setData(data);
-      console.log(data);
-    });
-    //initialize datatable
-    $(document).ready(function () {
-      setTimeout(function () {
-        $("#example").DataTable();
-      }, 1000);
-    });
+  const getKaryawans = async () => {
+    try {
+      axios.get(API_URL + "/karyawans").then((res) => {
+        //Storing users detail in state array object
+        const data = res.data;
+        setData(data);
+        console.log(data);
+      });
+      //initialize datatable
+      $(document).ready(function () {
+        setTimeout(function () {
+          $("#example").DataTable();
+        }, 500);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onClickExport = () => {
+    let wb = XLSX.utils.book_new(),
+      ws = XLSX.utils.json_to_sheet(data);
+
+    XLSX.utils.book_append_sheet(wb, ws, "Karyawans");
+
+    XLSX.writeFile(wb, "Karyawans.xlsx");
   };
 
   // componentDidMount() {
@@ -150,6 +168,14 @@ const Karyawan = () => {
                       onClick={handleShow}
                     >
                       Add Karyawan
+                    </Button>
+                    <Button
+                      style={{ backgroundColor: "#1bcfb4", border: "none" }}
+                      className="btn text-white mb-3 float-start"
+                      size="md"
+                      onClick={onClickExport}
+                    >
+                      EXPORT <FontAwesomeIcon icon={faFileExcel} />
                     </Button>
                     {/* </Link> */}
                     <div style={{ overflowX: "auto", width: "100%" }}>

@@ -11,12 +11,16 @@ const CardSummary = () => {
     getSummary();
   }, []);
 
-  const getSummary = () => {
-    axios.get(FAKEAPI_URL + "/summary").then((res) => {
-      const data = res.data;
-      setSummary(data[0]);
-      console.log(data[0]);
-    });
+  const getSummary = async () => {
+    try {
+      axios.get(FAKEAPI_URL + "/summary").then((res) => {
+        const data = res.data;
+        setSummary(data[0]);
+        console.log(data[0]);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>
