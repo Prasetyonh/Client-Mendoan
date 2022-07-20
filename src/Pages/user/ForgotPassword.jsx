@@ -99,7 +99,7 @@ const ForgotPass = () => {
                 <div className="row g-0">
                   <div className="col-md-6 col-lg-5 d-none d-md-block mt-lg-5">
                     <img
-                      src="../assets/images/forgotPass.png"
+                      src="../assets/images/ForgotPass.png"
                       alt="login form"
                       className="img-fluid mt-5"
                       style={{ borderRadius: "1rem 0 0 1rem" }}
