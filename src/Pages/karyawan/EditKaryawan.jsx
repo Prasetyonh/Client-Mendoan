@@ -105,7 +105,7 @@ const EditKaryawan = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:2471/token");
+      const response = await axios.get(`${API_URL}/token`);
       setToken(response.data.accessToken);
       const decoded = jwt_decode(response.data.accessToken);
 
@@ -194,7 +194,7 @@ const EditKaryawan = () => {
             status,
           };
 
-          await axios.put(`http://localhost:2471/karyawans/${id}`, newKaryawan);
+          await axios.put(`${API_URL}/karyawans/${id}`, newKaryawan);
 
           history.push("/karyawan");
 
