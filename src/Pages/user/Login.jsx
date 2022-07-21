@@ -45,6 +45,7 @@ const Login = ({ setIsLogin }) => {
     e.preventDefault();
     try {
       const response = await axios.post(API_URL + "/login", {
+        credentials: "include",
         email: email,
         password: password,
       });
