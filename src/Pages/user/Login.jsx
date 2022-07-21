@@ -44,7 +44,7 @@ const Login = ({ setIsLogin }) => {
   const Auth = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://192.168.43.233:2471/login", {
+      const response = await axios.post(API_URL + "/login", {
         email: email,
         password: password,
       });
