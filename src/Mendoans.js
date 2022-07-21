@@ -16,6 +16,8 @@ import {
   AddAssignment,
   EditAssignment,
 } from "./Pages/Assignment";
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
 function Mendoans({ setIsLogin }) {
   document.body.style.backgroundColor = "#ebdfed";

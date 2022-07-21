@@ -8,6 +8,7 @@ import show from "../../assets/eye.png";
 import hide from "../../assets/hidden.png";
 
 import { API_URL } from "../../Utils/Constant";
+axios.defaults.withCredentials = true;
 
 const Login = ({ setIsLogin }) => {
   const [email, setEmail] = useState("");
@@ -45,7 +46,8 @@ const Login = ({ setIsLogin }) => {
     e.preventDefault();
     try {
       const response = await axios.post(API_URL + "/login", {
-        credentials: "include",
+        withCredentials: true,
+        credentials: "same-origin",
         email: email,
         password: password,
       });
