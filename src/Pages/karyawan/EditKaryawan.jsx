@@ -12,6 +12,7 @@ import {
   Alert,
   Container,
 } from "react-bootstrap";
+import { API_URL } from "../../Utils/Constant";
 
 const EditKaryawan = () => {
   //not allow space
@@ -67,7 +68,7 @@ const EditKaryawan = () => {
   useEffect(() => {
     refreshToken();
     const getKaryawan = async () => {
-      const res = await axios.get(`http://localhost:2471/karyawans/${id}`);
+      const res = await axios.get(`${API_URL}/karyawans/${id}`);
 
       setKaryawan({
         user_id: res.data.user_id,
