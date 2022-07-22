@@ -92,6 +92,7 @@ const Login = ({ setIsLogin }) => {
                             width="350"
                             height="90"
                             alt="mendoans"
+                            className="img-fluid"
                           />
                         </span>
                       </div>
@@ -128,7 +129,6 @@ const Login = ({ setIsLogin }) => {
                           <InputGroup hasValidation>
                             <Form.Control
                               type={passwordShown ? "text" : "password"}
-                              aria-describedby="inputGroupPrepend"
                               required
                               value={password}
                               onChange={(e) => setPassword(e.target.value)}

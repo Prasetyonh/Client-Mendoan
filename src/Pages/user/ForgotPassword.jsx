@@ -118,6 +118,7 @@ const ForgotPass = () => {
                             width="350"
                             height="90"
                             alt="mendoans"
+                            className="img-fluid"
                           />
                         </span>
                       </div>
