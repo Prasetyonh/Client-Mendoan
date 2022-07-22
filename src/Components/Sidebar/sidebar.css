@@ -87,3 +87,9 @@ ul {
   margin-top: -5px;
   margin-bottom: -5px;
 }
+
+@media screen and (max-width: 450px) {
+  .sidebar {
+    min-height: 160vh;
+  }
+}
