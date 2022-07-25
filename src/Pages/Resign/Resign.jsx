@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 import React, { useState, useEffect } from "react";
-import { Col, Row, Container, Card, Button } from "react-bootstrap";
+import { Col, Row, Card, Button } from "react-bootstrap";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
@@ -63,81 +63,79 @@ const Resign = () => {
 
   return (
     <div className="MainDiv">
-      <h6 className="text-secondary ms-3">RESIGN</h6>
-      <Container className="mt-2">
-        <Row className="mt-5">
-          <Col md="{12}">
-            <Card className="border-0 rounded shadow mb-3">
-              <Card.Header as="h5" className="text-center">
-                List Karyawan Resign
-              </Card.Header>
-              <Card.Body>
-                <Link to={"/addresign"}>
-                  <Button
-                    style={{ backgroundColor: "#b66dff" }}
-                    className="mb-3 float-end btn-light text-white"
-                    size="md"
-                  >
-                    Add Resign
-                  </Button>
-                </Link>
-                <div style={{ overflowX: "auto", width: "100%" }}>
-                  <table
-                    id="example"
-                    className="table table-borderless table-striped hover compact "
-                  >
-                    <thead>
-                      <tr>
-                        <th style={{ width: "4%" }}>No</th>
-                        <th>Nama Karyawan</th>
-                        <th>NIK</th>
-                        <th>Tanggal Resign</th>
-                        <th>Divisi</th>
-                        <th>Email</th>
-                        <th>Status Karyawan</th>
-                        <th> Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {data.map((result, index) => {
-                        return (
-                          <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{result.fullname}</td>
-                            <td>{result.nik}</td>
-                            <td>
-                              {dataResign.map((resign, idx) => {
-                                if (result.user_id === resign.user_id) {
-                                  return (
-                                    <div key={idx}>
-                                      {moment(resign.tanggalresign).format(
-                                        "DD-MM-YYYY"
-                                      )}
-                                    </div>
-                                  );
-                                }
-                              })}
-                            </td>
+      <h6 className="text-secondary ms-3 mb-4">RESIGN</h6>
 
-                            <td>{result.divisi}</td>
-                            <td>{result.email}</td>
-                            <td>{result.status}</td>
+      <Row>
+        <Col md="{12}">
+          <Card className="border-0 rounded shadow mb-3">
+            <Card.Header as="h5" className="text-center">
+              List Karyawan Resign
+            </Card.Header>
+            <Card.Body>
+              <Link to={"/addresign"}>
+                <Button
+                  style={{ backgroundColor: "#b66dff" }}
+                  className="mb-3 float-end btn-light text-white"
+                  size="md"
+                >
+                  Add Resign
+                </Button>
+              </Link>
+              <div style={{ overflowX: "auto", width: "100%" }}>
+                <table
+                  id="example"
+                  className="table table-borderless table-striped hover compact "
+                >
+                  <thead>
+                    <tr>
+                      <th style={{ width: "4%" }}>No</th>
+                      <th>Nama Karyawan</th>
+                      <th>NIK</th>
+                      <th>Tanggal Resign</th>
+                      <th>Divisi</th>
+                      <th>Email</th>
+                      <th>Status Karyawan</th>
+                      <th> Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.map((result, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{index + 1}</td>
+                          <td>{result.fullname}</td>
+                          <td>{result.nik}</td>
+                          <td>
+                            {dataResign.map((resign, idx) => {
+                              if (result.user_id === resign.user_id) {
+                                return (
+                                  <div key={idx}>
+                                    {moment(resign.tanggalresign).format(
+                                      "DD-MM-YYYY"
+                                    )}
+                                  </div>
+                                );
+                              }
+                            })}
+                          </td>
 
-                            <td>
-                              <p
-                                aria-label="Info Karyawan"
-                                style={{ color: "#b66dff" }}
-                                size="sm"
-                                className="btn m-1"
-                                onClick={() => {
-                                  history.push(
-                                    `/detailresign/${result.user_id}`
-                                  );
-                                }}
-                              >
-                                Detail
-                              </p>
-                              {/* <Button
+                          <td>{result.divisi}</td>
+                          <td>{result.email}</td>
+                          <td>{result.status}</td>
+
+                          <td>
+                            <p
+                              aria-label="Info Karyawan"
+                              style={{ color: "#b66dff" }}
+                              size="sm"
+                              className="btn m-1"
+                              onClick={() => {
+                                history.push(`/detailresign/${result.user_id}`);
+                              }}
+                            >
+                              Detail
+                            </p>
+                            {/* <Button
                                 as={Link}
                                 to={`/editkaryawan/${result.user_id}`}
                                 style={{
@@ -149,18 +147,17 @@ const Resign = () => {
                               >
                                 <FontAwesomeIcon icon={faPencil} size="sm" />
                               </Button> */}
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
     </div>
   );
 };

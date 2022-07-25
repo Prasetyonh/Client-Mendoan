@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect } from "react";
-import { Col, Row, Card, Button, Container } from "react-bootstrap";
+import { Col, Row, Card, Button } from "react-bootstrap";
 import axios from "axios";
 import { FAKEAPI_URL } from "../../Utils/Constant";
 import { Link } from "react-router-dom";
@@ -73,115 +73,111 @@ const ReportAssignment = () => {
   return (
     <div className="MainDiv">
       <h6 className="text-secondary ms-3">REPORT ASSIGNMENT</h6>
-      <Container>
-        <Row className="mt-4">
-          <Col md="{12}">
-            <Card
-              className=" shadow mb-3 mx-4 "
-              style={{ borderRadius: "15px" }}
-            >
-              <Card.Header
-                style={{
-                  backgroundColor: "white",
-                  borderTopLeftRadius: "15px",
-                  borderTopRightRadius: "15px",
-                }}
-                as="h5"
-              >
-                List Assignment
-              </Card.Header>
-              {loading ? (
-                <center>
-                  <GridLoader
-                    color="#b66cfd"
-                    loading
-                    margin={8}
-                    size={30}
-                    speedMultiplier={1}
-                  />
-                </center>
-              ) : (
-                <Card.Body>
-                  <Button
-                    style={{ backgroundColor: "#1bcfb4", border: "none" }}
-                    className="btn text-white mb-3 float-start"
-                    size="md"
-                    onClick={onClickExport}
-                  >
-                    EXPORT <FontAwesomeIcon icon={faFileExcel} />
-                  </Button>
-                  <div style={{ overflowX: "auto", width: "100%" }}>
-                    <table
-                      id="example"
-                      className="table table-borderless table-striped hover compact"
-                    >
-                      <thead>
-                        <tr style={{ color: "#5e5e5e", fontSize: "12px" }}>
-                          <th>NO</th>
-                          <th>NAMA KARYAWAN</th>
-                          <th>PROJECT</th>
-                          <th>CR NAME</th>
-                          <th>PROJECT MANAGER</th>
-                          <th>ASSIGNMENT TYPE</th>
-                          <th>STATUS</th>
-                          <th>START ASSIGNMENT</th>
-                          <th>END ASSIGNMENT</th>
-                          <th>EXTEND ASSIGNMENT</th>
-                          <th>ACTION</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {data.map((result, idx) => {
-                          return (
-                            <tr key={idx} style={{ fontSize: "12px" }}>
-                              <td>{idx + 1}</td>
-                              <td>{result.fullname}</td>
-                              <td>{result.name}</td>
-                              <td>{result.crname}</td>
-                              <td>{result.pm}</td>
-                              <td>{result.assignmenttype}</td>
-                              <td>{result.status}</td>
-                              <td>{result.dateassignment}</td>
-                              <td>{result.endassignment}</td>
-                              <td>{result.extendassignment}</td>
-                              <td>
-                                <Button
-                                  as={Link}
-                                  to={`/editassignment/${result.id}`}
-                                  style={{
-                                    backgroundColor: "#fed713",
-                                    border: "none",
-                                  }}
-                                  size="sm"
-                                  className="btn m-1"
-                                >
-                                  <FontAwesomeIcon icon={faPencil} size="sm" />
-                                </Button>
 
-                                <Button
-                                  style={{
-                                    backgroundColor: "#fe7c96",
-                                    border: "none",
-                                  }}
-                                  size="sm"
-                                  className="btn btn-light text-white m-1"
-                                  onClick={() => deleteAssignment(result.id)}
-                                >
-                                  <FontAwesomeIcon icon={faTrash} size="sm" />
-                                </Button>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                </Card.Body>
-              )}
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+      <Row className="mt-4">
+        <Col md="{12}">
+          <Card className=" shadow mb-3 mx-4 " style={{ borderRadius: "15px" }}>
+            <Card.Header
+              style={{
+                backgroundColor: "white",
+                borderTopLeftRadius: "15px",
+                borderTopRightRadius: "15px",
+              }}
+              as="h5"
+            >
+              List Assignment
+            </Card.Header>
+            {loading ? (
+              <center>
+                <GridLoader
+                  color="#b66cfd"
+                  loading
+                  margin={8}
+                  size={30}
+                  speedMultiplier={1}
+                />
+              </center>
+            ) : (
+              <Card.Body>
+                <Button
+                  style={{ backgroundColor: "#1bcfb4", border: "none" }}
+                  className="btn text-white mb-3 float-start"
+                  size="md"
+                  onClick={onClickExport}
+                >
+                  EXPORT <FontAwesomeIcon icon={faFileExcel} />
+                </Button>
+                <div style={{ overflowX: "auto", width: "100%" }}>
+                  <table
+                    id="example"
+                    className="table table-borderless table-striped hover compact"
+                  >
+                    <thead>
+                      <tr style={{ color: "#5e5e5e", fontSize: "12px" }}>
+                        <th>NO</th>
+                        <th>NAMA KARYAWAN</th>
+                        <th>PROJECT</th>
+                        <th>CR NAME</th>
+                        <th>PROJECT MANAGER</th>
+                        <th>ASSIGNMENT TYPE</th>
+                        <th>STATUS</th>
+                        <th>START ASSIGNMENT</th>
+                        <th>END ASSIGNMENT</th>
+                        <th>EXTEND ASSIGNMENT</th>
+                        <th>ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.map((result, idx) => {
+                        return (
+                          <tr key={idx} style={{ fontSize: "12px" }}>
+                            <td>{idx + 1}</td>
+                            <td>{result.fullname}</td>
+                            <td>{result.name}</td>
+                            <td>{result.crname}</td>
+                            <td>{result.pm}</td>
+                            <td>{result.assignmenttype}</td>
+                            <td>{result.status}</td>
+                            <td>{result.dateassignment}</td>
+                            <td>{result.endassignment}</td>
+                            <td>{result.extendassignment}</td>
+                            <td>
+                              <Button
+                                as={Link}
+                                to={`/editassignment/${result.id}`}
+                                style={{
+                                  backgroundColor: "#fed713",
+                                  border: "none",
+                                }}
+                                size="sm"
+                                className="btn m-1"
+                              >
+                                <FontAwesomeIcon icon={faPencil} size="sm" />
+                              </Button>
+
+                              <Button
+                                style={{
+                                  backgroundColor: "#fe7c96",
+                                  border: "none",
+                                }}
+                                size="sm"
+                                className="btn btn-light text-white m-1"
+                                onClick={() => deleteAssignment(result.id)}
+                              >
+                                <FontAwesomeIcon icon={faTrash} size="sm" />
+                              </Button>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </Card.Body>
+            )}
+          </Card>
+        </Col>
+      </Row>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Col, Row, Container, Card, Button } from "react-bootstrap";
+import { Col, Row, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
@@ -86,68 +86,65 @@ const Cuti = () => {
   return (
     <div className="MainDiv">
       <h6 className="text-secondary ms-3 mb-4">CUTI</h6>
-      <Container>
-        <Row>
-          <Col md="{12}">
-            <Card className="border-0 rounded shadow mb-3">
-              <Card.Header as="h5" className="text-center">
-                List Karyawan Cuti
-              </Card.Header>
-              <Card.Body>
-                <Link to={"/addcuti"}>
-                  <Button
-                    style={{ backgroundColor: "#b66dff", border: "none" }}
-                    className="mb-3 float-end"
-                    size="md"
-                  >
-                    Add Cuti
-                  </Button>
-                </Link>
-                <div style={{ overflowX: "auto", width: "100%" }}>
-                  <table
-                    id="example"
-                    className="table table-borderless table-striped hover compact "
-                  >
-                    <thead>
-                      <tr>
-                        <th style={{ width: "7%" }}>No</th>
-                        <th style={{ width: "25%" }}>Nama Karyawan</th>
-                        <th style={{ width: "20%" }}>Tanggal Cuti</th>
-                        <th style={{ width: "35%" }}>Keterangan</th>
-                        <th> Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {data.map((result, index) => {
-                        return (
-                          <tr key={result.id}>
-                            <td>{index + 1}</td>
-                            <td>{result.name}</td>
-                            <td>
-                              {moment(result.tanggal).format("DD-MM-YYYY")}
-                            </td>
-                            <td>{result.keterangan}</td>
-                            <td>
-                              <p
-                                style={{ color: "#b66dff" }}
-                                size="sm"
-                                className="btn m-1"
-                                onClick={() => deleteKaryawanCuti(result.id)}
-                              >
-                                Delete
-                              </p>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+
+      <Row>
+        <Col md="{12}">
+          <Card className="border-0 rounded shadow mb-3">
+            <Card.Header as="h5" className="text-center">
+              List Karyawan Cuti
+            </Card.Header>
+            <Card.Body>
+              <Link to={"/addcuti"}>
+                <Button
+                  style={{ backgroundColor: "#b66dff", border: "none" }}
+                  className="mb-3 float-end"
+                  size="md"
+                >
+                  Add Cuti
+                </Button>
+              </Link>
+              <div style={{ overflowX: "auto", width: "100%" }}>
+                <table
+                  id="example"
+                  className="table table-borderless table-striped hover compact "
+                >
+                  <thead>
+                    <tr>
+                      <th style={{ width: "7%" }}>No</th>
+                      <th style={{ width: "25%" }}>Nama Karyawan</th>
+                      <th style={{ width: "20%" }}>Tanggal Cuti</th>
+                      <th style={{ width: "35%" }}>Keterangan</th>
+                      <th> Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.map((result, index) => {
+                      return (
+                        <tr key={result.id}>
+                          <td>{index + 1}</td>
+                          <td>{result.name}</td>
+                          <td>{moment(result.tanggal).format("DD-MM-YYYY")}</td>
+                          <td>{result.keterangan}</td>
+                          <td>
+                            <p
+                              style={{ color: "#b66dff" }}
+                              size="sm"
+                              className="btn m-1"
+                              onClick={() => deleteKaryawanCuti(result.id)}
+                            >
+                              Delete
+                            </p>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
     </div>
   );
 };

@@ -173,7 +173,7 @@ const EditAssignment = () => {
                 )}
                 <p className="info-assignment">ASSIGNMENT INFORMATION</p>
 
-                <Form onSubmit={updateAssignment} style={{ padding: "0 50px" }}>
+                <Form onSubmit={updateAssignment} style={{ padding: "0 10px" }}>
                   <section className="info">
                     <Row>
                       <div className="col-md-6 mb-3">
@@ -272,25 +272,27 @@ const EditAssignment = () => {
                     </Row>
                   </section>
 
-                  <Button
-                    style={{
-                      backgroundColor: "#fed713",
-                      border: "none",
-                    }}
-                    type="submit"
-                    size="md"
-                  >
-                    UPDATE
-                  </Button>
-                  <Link to={"/assignment"}>
-                    <button
-                      type="button"
-                      className="ms-2 btn btn-outline-secondary"
-                      size="sm"
+                  <div>
+                    <Button
+                      style={{
+                        backgroundColor: "#fed713",
+                        border: "none",
+                      }}
+                      type="submit"
+                      size="md"
                     >
-                      CANCEL
-                    </button>
-                  </Link>
+                      UPDATE
+                    </Button>
+                    <Link to={"/assignment"}>
+                      <button
+                        type="button"
+                        className="ms-2 btn btn-outline-secondary"
+                        size="sm"
+                      >
+                        CANCEL
+                      </button>
+                    </Link>
+                  </div>
                 </Form>
               </Card.Body>
             </Card>
