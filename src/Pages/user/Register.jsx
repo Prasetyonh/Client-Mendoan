@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import validator from "validator";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Button } from "react-bootstrap";
 
