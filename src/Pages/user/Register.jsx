@@ -36,7 +36,7 @@ const Register = () => {
         confPassword: confPassword,
       });
       Swal.fire("Success!", "Registration Success", "success");
-      history.push("/");
+      history.push("/users");
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
@@ -46,7 +46,7 @@ const Register = () => {
 
   return (
     <div>
-      <section className="vh-100" style={{ backgroundColor: "#f5f5f5" }}>
+      <section className="vh-100" style={{ backgroundColor: "#ebdfed" }}>
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col col-xl-10">
@@ -67,7 +67,13 @@ const Register = () => {
                     <div className="card-body p-4 p-lg-5 text-black">
                       <form onSubmit={Register}>
                         <div className="d-flex align-items-center mb-3 pb-1">
-                          <span className="h1 fw-bold mb-0">Mendoans</span>
+                          <img
+                            src="../assets/images/logotext.png"
+                            width="350"
+                            height="90"
+                            alt="mendoans"
+                            className="img-fluid"
+                          />
                         </div>
                         <h5
                           className="fw-normal mb-3 pb-3"
@@ -109,9 +115,7 @@ const Register = () => {
                               setEmail(e.target.value) & validateEmail(e)
                             }
                           />
-                          <p className="mt-2 text-danger">
-                            {emailError}
-                          </p>
+                          <p className="mt-2 text-danger">{emailError}</p>
                         </div>
 
                         <div className="form-outline mb-3">
@@ -165,17 +169,16 @@ const Register = () => {
                           <p className="mt-2 text-danger">{msg}</p>
                         </div>
                         <div className="pt-1 mb-4">
-                          <Button variant="primary" type="submit">
-                            Register
+                          <Button
+                            style={{
+                              backgroundColor: "#b66dff",
+                              border: "none",
+                            }}
+                            type="submit"
+                          >
+                            SUBMIT
                           </Button>
                         </div>
-
-                        <p>
-                          Already have an account?{" "}
-                          <Link to={"/"} style={{ textDecoration: "none" }}>
-                            Sign In here
-                          </Link>
-                        </p>
                       </form>
                     </div>
                   </div>

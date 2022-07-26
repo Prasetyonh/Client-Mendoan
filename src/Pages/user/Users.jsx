@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { useHistory } from "react-router-dom";
-import { Col, Row, Container, Card } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
+import { Col, Row, Container, Card, Button } from "react-bootstrap";
 
 import { API_URL } from "../../Utils/Constant";
 
@@ -77,6 +77,15 @@ const Dashboard = () => {
                 List Users Registered
               </Card.Header>
               <Card.Body>
+                <Link to={"/adduser"}>
+                  <Button
+                    style={{ backgroundColor: "#b66dff" }}
+                    className="mb-3 float-end btn-light text-white"
+                    size="md"
+                  >
+                    Add User
+                  </Button>
+                </Link>
                 <div style={{ overflowX: "auto", width: "100%" }}>
                   <table className="table table-striped">
                     <thead>

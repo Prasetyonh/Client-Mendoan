@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { Users } from "./Pages/user";
+import { Users, Register } from "./Pages/user";
 // import Navbar from "./Components/Navbar";
 import { Karyawan, EditKaryawan, InfoKaryawan } from "./Pages/karyawan";
 import { Cuti, AddCuti } from "./Pages/cuti";
@@ -27,6 +27,10 @@ function Mendoans({ setIsLogin }) {
         {" "}
         <Sidebar setIsLogin={setIsLogin}>
           <Switch setIsLogin={setIsLogin}>
+            <Route path="/adduser">
+              {/* <Navbar /> */}
+              <Register />
+            </Route>
             <Route path="/dashboard">
               {/* <Navbar /> */}
               <Dashboard />
