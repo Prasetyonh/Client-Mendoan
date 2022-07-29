@@ -3,6 +3,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { Link, useHistory } from "react-router-dom";
 import { Col, Row, Container, Card, Button } from "react-bootstrap";
+import Error404 from "../../Components/404NotFound/404NotFound";
 
 import { API_URL } from "../../Utils/Constant";
 
@@ -11,6 +12,7 @@ const Dashboard = () => {
   const [token, setToken] = useState("");
   const [expire, setExpire] = useState("");
   const [users, setUsers] = useState([]);
+  const [role, setRole] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -26,6 +28,7 @@ const Dashboard = () => {
       const decoded = jwt_decode(response.data.accessToken);
       setName(decoded.name);
       setExpire(decoded.exp);
+      setRole(decoded.role);
     } catch (error) {
       if (error.response) {
         history.push("/");
@@ -59,60 +62,68 @@ const Dashboard = () => {
       },
     });
     setUsers(response.data);
+    console.log(response.data);
   };
-
-  return (
-    <div className="MainDiv">
-      {/* <Button variant="primary" size="sm" type="submit" onClick={getUsers}>
+  if (role !== 1) {
+    return <Error404 />;
+  } else {
+    return (
+      <div className="MainDiv">
+        {/* <Button variant="primary" size="sm" type="submit" onClick={getUsers}>
         Get Users
       </Button> */}
-      <Container>
-        <h4>
-          Welcome : <span className="text-uppercase">{name}</span>
-        </h4>
-        <Row>
-          <Col md="{12}">
-            <Card className="border-0 rounded shadow mb-3">
-              <Card.Header as="h5" className="text-center">
-                List Users Registered
-              </Card.Header>
-              <Card.Body>
-                <Link to={"/adduser"}>
-                  <Button
-                    style={{ backgroundColor: "#b66dff" }}
-                    className="mb-3 float-end btn-light text-white"
-                    size="md"
-                  >
-                    Add User
-                  </Button>
-                </Link>
-                <div style={{ overflowX: "auto", width: "100%" }}>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>No</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {users.map((user, index) => (
-                        <tr key={user.id}>
-                          <td>{index + 1}</td>
-                          <td>{user.name}</td>
-                          <td>{user.email}</td>
+        <Container>
+          <h4>
+            Welcome : <span className="text-uppercase">{name}</span>
+          </h4>
+          <Row>
+            <Col md="{12}">
+              <Card className="border-0 rounded shadow mb-3">
+                <Card.Header as="h5" className="text-center">
+                  List Users Registered
+                </Card.Header>
+                <Card.Body>
+                  <Link to={"/adduser"}>
+                    <Button
+                      style={{ backgroundColor: "#b66dff" }}
+                      className="mb-3 float-end btn-light text-white"
+                      size="md"
+                    >
+                      Add User
+                    </Button>
+                  </Link>
+                  <div style={{ overflowX: "auto", width: "100%" }}>
+                    <table className="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Role ID</th>
+                          <th>Role</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  );
+                      </thead>
+                      <tbody>
+                        {users.map((user, index) => (
+                          <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{user.name}</td>
+                            <td>{user.email}</td>
+                            <td>{user.role_id}</td>
+                            <td>{user.role_name}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    );
+  }
 };
 
 export default Dashboard;

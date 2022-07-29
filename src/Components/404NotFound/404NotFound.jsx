@@ -6,7 +6,7 @@ import "./Error.css";
 export class Error404 extends Component {
   render() {
     return (
-      <div className="not-found" onScroll={"no"}>
+      <div className="not-found">
         <header className="top-header"></header>
         {/*dust particel*/}
         <div>

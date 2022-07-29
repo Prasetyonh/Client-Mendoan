@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 import Swal from "sweetalert2";
 import { Link, useHistory } from "react-router-dom";
 import { FaUserAlt, FaPowerOff, FaUserCog } from "react-icons/fa";
@@ -18,9 +19,14 @@ import { API_URL } from "../../Utils/Constant";
 const Sidebar = ({ children, setIsLogin }) => {
   const history = useHistory();
 
+  const [expire, setExpire] = useState("");
+
+  const [role, setRole] = useState("");
+
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
   useEffect(() => {
+    refreshToken();
     $(document).ready(function () {
       $(".parent").click(function () {
         $(" .sub-menu").toggleClass("show");
@@ -28,6 +34,41 @@ const Sidebar = ({ children, setIsLogin }) => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const refreshToken = async () => {
+    try {
+      const response = await axios.get(API_URL + "/token");
+
+      const decoded = jwt_decode(response.data.accessToken);
+
+      setExpire(decoded.exp);
+      setRole(decoded.role);
+      console.log(decoded);
+    } catch (error) {
+      if (error.response) {
+        history.push("/");
+      }
+    }
+  };
+
+  const axiosJwt = axios.create();
+
+  axiosJwt.interceptors.request.use(
+    async (config) => {
+      const currentDate = new Date();
+      if (expire * 1000 < currentDate.getTime()) {
+        const response = await axios.get(API_URL + "/token");
+        config.headers.Authorization = `Bearer ${response.data.accessToken}`;
+        const decoded = jwt_decode(response.data.accessToken);
+
+        setExpire(decoded.exp);
+      }
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
 
   const Logout = async (e) => {
     Swal.fire({
@@ -158,15 +199,17 @@ const Sidebar = ({ children, setIsLogin }) => {
           </div>{" "}
         </Link>
 
-        <Link className="link" to={"/users"}>
-          <FaUserCog className="icon " />{" "}
-          <div
-            className="link_text ms-3"
-            style={{ display: isOpen ? "block" : "none" }}
-          >
-            Users
-          </div>{" "}
-        </Link>
+        <div style={{ display: role === 1 ? "block" : "none" }}>
+          <Link className="link" to={"/users"}>
+            <FaUserCog className="icon " />{" "}
+            <div
+              className="link_text ms-3"
+              style={{ display: isOpen ? "block" : "none" }}
+            >
+              Users
+            </div>{" "}
+          </Link>
+        </div>
 
         <div className="link" onClick={Logout}>
           <FaPowerOff className="icon" />
