@@ -242,9 +242,15 @@ function ModalAddKaryawan({ handleClose, getKaryawans }) {
                 <option value={""} hidden>
                   -Pilih Divisi Karyawan-
                 </option>
-                <option value="Developer">Developer</option>
+                <option value="PMO">PMO</option>
                 <option value="BSO">BSO</option>
-                <option value="Digital Marketing">Digital Marketing</option>
+                <option value="SDO">SDO</option>
+                <option value="MSO">MSO</option>
+                <option value="KMO">KMO</option>
+                <option value="PDO">PDO</option>
+                <option value="BO">BO</option>
+                <option value="DSO">DSO</option>
+                <option value="RMO">RMO</option>
               </Form.Control>
             </Form.Group>
 
@@ -321,12 +327,55 @@ function ModalAddKaryawan({ handleClose, getKaryawans }) {
               <Form.Label>Posisi</Form.Label>
               <Form.Control
                 name="posisi"
-                type="text"
+                as="select"
                 value={posisi}
                 onChange={(e) => setPosisi(e.target.value)}
                 placeholder="Masukkan Posisi Karyawan"
                 required
-              />
+              >
+                <option value="" selected disabled hidden>
+                  -Pilih Posisi-
+                </option>
+                <option value="Developer">Developer</option>
+                <option value="Developer Analyst">Developer Analyst</option>
+                <option value="System Analyst">System Analyst</option>
+                <option value="Project Manager">Project Manager</option>
+                <option value="Project Admin">Project Admin</option>
+                <option value="Quality Control">Quality Control</option>
+                <option value="Technical Writer">Technical Writer</option>
+                <option value="Data Scientist">Data Scientist</option>
+                <option value="Support Surveillance">
+                  Support Surveillance
+                </option>
+                <option value="Support Leader">Support Leader</option>
+                <option value="Support Specialist">Support Specialist</option>
+                <option value="Subject Matter Expert">
+                  Subject Matter Expert
+                </option>
+                <option value="UI / UX">UI / UX</option>
+                <option value="System Architect">System Architect</option>
+                <option value="Digital Solutions Senior Officer">
+                  Digital Solutions Senior Officer
+                </option>
+                <option value="RF Engineer">RF Engineer</option>
+                <option value="System Administrator">
+                  System Administrator
+                </option>
+                <option value="Senior Training Officer">
+                  Senior Training Officer
+                </option>
+                <option value="Field Engineer Radar">
+                  Field Engineer Radar
+                </option>
+                <option value="Data Analyst">Data Analyst</option>
+                <option value="Consultant">Consultant</option>
+                <option value="Linguistic">Linguistic</option>
+                <option value="Radar Engineer">Radar Engineer</option>
+                <option value="Inventory Admin">Inventory Admin</option>
+                <option value="Machine Learning Engineer">
+                  Machine Learning Engineer
+                </option>
+              </Form.Control>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formGridEmail">
@@ -365,6 +414,8 @@ function ModalAddKaryawan({ handleClose, getKaryawans }) {
                   -Pilih Pendidikan Terakhir Karyawan-
                 </option>
                 <option value="SMA/SMK">SMA/SMK</option>
+                <option value="D1">D1</option>
+                <option value="D2">D2</option>
                 <option value="D3">D3</option>
                 <option value="S1">S1</option>
                 <option value="S2">S2</option>

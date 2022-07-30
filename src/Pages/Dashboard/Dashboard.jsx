@@ -62,7 +62,7 @@ const Dashboard = () => {
       <CardSummary />
       <Row className="mt-4">
         <Col md="{12}">
-          <Card className=" shadow mb-3 mx-4 " style={{ borderRadius: "15px" }}>
+          <Card className="shadow mb-3 mx-4" style={{ borderRadius: "15px" }}>
             <Card.Header
               style={{
                 backgroundColor: "white",

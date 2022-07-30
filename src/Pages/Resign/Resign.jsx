@@ -67,7 +67,7 @@ const Resign = () => {
 
       <Row>
         <Col md="{12}">
-          <Card className="border-0 rounded shadow mb-3">
+          <Card className="shadow mb-3 mx-4" style={{ borderRadius: "15px" }}>
             <Card.Header as="h5" className="text-center">
               List Karyawan Resign
             </Card.Header>
